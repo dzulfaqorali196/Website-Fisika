@@ -1,11 +1,23 @@
 document.addEventListener('DOMContentLoaded', function() {
     const forms = document.querySelectorAll('form[action="https://api.web3forms.com/submit"]');
     
+    // Pastikan CONFIG tersedia
+    if (typeof CONFIG === 'undefined') {
+        console.error('CONFIG tidak ditemukan. Pastikan config.js dimuat sebelum script.js');
+        return;
+    }
+
     forms.forEach(form => {
-        const accessKeyInput = form.querySelector('input[name="web3forms-key"]');
+        // Set access key
+        const accessKeyInput = form.querySelector('input[name="access_key"]');
         if (accessKeyInput && CONFIG.WEB3FORMS_KEY) {
             accessKeyInput.value = CONFIG.WEB3FORMS_KEY;
         }
+
+        // Handle form submission
+        form.addEventListener('submit', function(e) {
+            // Form handling logic tetap sama
+        });
     });
 });
 
