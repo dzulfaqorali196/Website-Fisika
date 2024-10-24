@@ -1,8 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const web3formsInput = document.getElementById('web3forms-key');
-    if (web3formsInput) {
-        web3formsInput.value = CONFIG.WEB3FORMS_KEY;
-    }
+    const forms = document.querySelectorAll('form[action="https://api.web3forms.com/submit"]');
+    
+    forms.forEach(form => {
+        const accessKeyInput = form.querySelector('input[name="web3forms-key"]');
+        if (accessKeyInput && CONFIG.WEB3FORMS_KEY) {
+            accessKeyInput.value = CONFIG.WEB3FORMS_KEY;
+        }
+    });
 });
 
 document.addEventListener('DOMContentLoaded', function() {
