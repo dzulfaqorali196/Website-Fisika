@@ -7,6 +7,8 @@
 ## 📖 Deskripsi
 LabDz Virtual Lab adalah platform pembelajaran interaktif yang dirancang untuk membantu pemahaman konsep pengukuran dan satuan dalam fisika. Platform ini menyediakan simulasi virtual, materi pembelajaran interaktif, dan sistem evaluasi yang komprehensif.
 
+🌐 **Website**: [labdz.site](https://labdz.site)
+
 ## ✨ Fitur Utama
 
 ### 🎯 Simulasi Interaktif
@@ -185,6 +187,8 @@ Untuk pertanyaan dan dukungan, silakan hubungi melalui:
 - Form kontak di website
 - FAQ section
 - Newsletter subscription
+- Instagram: [@dzzulfaqorr](https://instagram.com/dzzulfaqorr)
+
 
 ## 🔍 Status
 [![Website Status](https://img.shields.io/website-up-down-green-red/http/monip.org.svg)](https://your-website-url.com)
