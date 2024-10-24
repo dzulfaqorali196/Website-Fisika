@@ -116,6 +116,18 @@ public_html/
 3. Buka `index.html` di browser
 4. Atau deploy ke web server
 
+## Setup Web3Forms
+1. Copy `config.example.js` ke `config.js`
+2. Daftar di [Web3Forms](https://web3forms.com/) untuk mendapatkan access key
+3. Ganti `YOUR_ACCESS_KEY_HERE` di `config.js` dengan access key Anda
+4. File `config.js` sudah ditambahkan ke .gitignore untuk keamanan
+
+Contoh `config.js`:
+```javascript
+const CONFIG = {
+    WEB3FORMS_KEY: 'your_access_key_here'
+};
+
 ## 💡 Penggunaan
 
 ### Simulasi

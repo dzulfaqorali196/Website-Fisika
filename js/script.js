@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const web3formsInput = document.getElementById('web3forms-key');
+    if (web3formsInput) {
+        web3formsInput.value = CONFIG.WEB3FORMS_KEY;
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
     // Selectors
     const menuTrigger = document.querySelector('.menu-trigger');
     const menuContainer = document.querySelector('.menu-container');
