@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Lab: Pengukuran dan Satuan</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <!-- Header dengan logo dan navigasi -->
+    <header>
+        <!-- Container untuk logo -->
+        <div class="logo-container">
+            <img src="/img/logo/logo.gif" alt="Virtual Lab Logo" class="logo-img">
+            <span class="logo-text">LabDz</span>
+        </div>
+        
+        <!-- Navigasi utama -->
+        <nav>
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#simulations">Simulasi</a></li>
+                <li><a href="#quiz">Kuis & Materi</a></li>
+            </ul>
+        </nav>
+
+        
+
+        <!-- Tombol menu untuk tampilan mobile -->
+        <div class="menu-trigger">
+            <span class="menu-trigger-bar top"></span>
+            <span class="menu-trigger-bar middle"></span>
+            <span class="menu-trigger-bar bottom"></span>
+        </div>
+    </header>
+
+    <!-- Container untuk menu mobile -->
+    <div class="menu-container">
+        <ul class="menu">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#simulations">Simulasi</a></li>
+            <li><a href="#quiz">Kuis & Materi</a></li>
+        </ul>
+    </div>
+
+    <!-- main content -->
+    <main>
+        <!-- Bagian Halaman Utama (Hero Section) -->
+        <section id="home" class="hero">
+            <!-- Latar belakang dengan efek paralaks -->
+            <div class="parallax">
+                <!-- Lapisan-lapisan paralaks -->
+                <div class="parallax-layer foreground"></div>
+                <div class="parallax-layer hills"></div>
+                <div class="parallax-layer rocks1"></div>
+                <div class="parallax-layer rocks2"></div>
+            </div>
+
+            <!-- Konten utama dari bagian hero -->
+            <div class="content">
+                <!-- Judul utama dengan animasi -->
+                <h1 class="animated-text">Virtual Lab: Pengukuran & Satuan</h1>
+                
+                <!-- Tagline atau slogan -->
+                <p class="tagline">Jelajahi Dunia Pengukuran dengan Teknologi Interaktif</p>
+                
+                <!-- Ikon-ikon fitur -->
+                <div class="feature-icons">
+                    <!-- Ikon pengukuran presisi -->
+                    <div class="icon">
+                        <i class="fas fa-ruler"></i>
+                        <span>Pengukuran Presisi</span>
+                    </div>
+                    <!-- Ikon konversi satuan -->
+                    <div class="icon">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Konversi Satuan</span>
+                    </div>
+                    <!-- Ikon analisis error -->
+                    <div class="icon">
+                        <i class="fas fa-calculator"></i>
+                        <span>Analisis Error</span>
+                    </div>
+                </div>
+                
+                <!-- Tombol ajakan bertindak (Call-to-Action) -->
+                <a href="#simulations" class="cta-button pulse">Mulai Eksperimen</a>
+                
+                <!-- Indikator untuk scroll -->
+                <div class="scroll-indicator">
+                    <span>Scroll untuk Menjelajah</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+            <h2 class="section-title">Tentang Virtual Lab Ini</h2>
+            <p class="section-description">Selamat datang di Virtual Lab Pengukuran dan Satuan! Lab ini dirancang untuk membantu Anda memahami konsep dasar pengukuran fisika dengan cara yang interaktif dan menarik.</p>
+            
+            <!-- Feature cards -->
+            <div class="feature-cards">
+                <div class="feature-card">
+                <i class="fas fa-graduation-cap feature-icon"></i>
+                <h3 class="feature-title">Belajar Interaktif</h3>
+                <p class="feature-description">Eksplorasi konsep pengukuran melalui simulasi yang dapat dimanipulasi secara langsung.</p>
+                </div>
+                <div class="feature-card">
+                <i class="fas fa-tools feature-icon"></i>
+                <h3 class="feature-title">Alat Praktis</h3>
+                <p class="feature-description">Gunakan alat-alat virtual untuk melakukan pengukuran dan konversi satuan dengan mudah.</p>
+                </div>
+                <div class="feature-card">
+                <i class="fas fa-chart-line feature-icon"></i>
+                <h3 class="feature-title">Analisis Error</h3>
+                <p class="feature-description">Pelajari cara menghitung dan memahami error dalam pengukuran ilmiah.</p>
+                </div>
+            </div>
+            
+            <p class="about-goal">Tujuan kami adalah membantu Anda membangun dasar yang kuat dalam pemahaman pengukuran fisika, yang penting untuk studi lanjutan di bidang sains dan teknologi.</p>
+            
+            <!-- Call to Action -->
+            <div class="about-cta">
+                <p>Siap untuk memulai perjalanan pembelajaran Anda?</p>
+                <a href="#simulations" class="btn btn-primary">Jelajahi Simulasi</a>
+            </div>
+            </div>
+        </section>
+
+        <!-- Simulation Section -->
+    <section id="simulations">
+        <h2 class="">Simulasi Interaktif</h2>
+        <div class="sim-container">
+            <!-- Simulasi Pengukuran dengan Penggaris -->
+            <div id="ruler-sim" class="simulation">
+                <h3>Pengukuran dengan Penggaris</h3>
+                <canvas id="rulerCanvas" width="400" height="200"></canvas>
+                <div class="control-panel">
+                    <button id="newMeasurement">Objek Baru</button>
+                    <select id="unitSelect"></select>
+                    <div id="measurementResult"></div>
+                </div>
+            </div>
+            
+            <!-- Simulasi Konverter Satuan -->
+            <div id="unit-converter" class="simulation">
+                <h3>Konverter Satuan Universal</h3>
+                <div class="converter-container">
+                    <div class="input-group">
+                        <input type="number" id="fromValue" placeholder="Nilai">
+                        <select id="fromUnit"></select>
+                    </div>
+                    <div class="swap-container">
+                        <button id="swapUnits" aria-label="Tukar unit">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                    </div>                    
+                    <div class="input-group">
+                        <input type="number" id="toValue" readonly placeholder="Hasil">
+                        <select id="toUnit"></select>
+                    </div>
+                </div>
+                <div class="category-selector">
+                    <button class="category-btn active" data-category="length">Panjang</button>
+                    <button class="category-btn" data-category="mass">Massa</button>
+                    <button class="category-btn" data-category="volume">Volume</button>
+                    <button class="category-btn" data-category="temperature">Suhu</button>
+                </div>
+            </div>
+            
+            <!-- Simulasi Kalkulator Error Pengukuran -->
+            <div id="error-calc" class="simulation">
+                <h3>Kalkulator Error Pengukuran</h3>
+                <div class="input-group">
+                    <label for="measuredValue">Nilai Terukur:</label>
+                    <input type="number" id="measuredValue" placeholder="Contoh: 10.5">
+                </div>
+                <div class="input-group">
+                    <label for="actualValue">Nilai Sebenarnya:</label>
+                    <input type="number" id="actualValue" placeholder="Contoh: 10.0">
+                </div>
+                <button id="calculateError">Hitung Error</button>
+                <div id="errorResult"></div>
+                <div id="errorExplanation" class="explanation"></div>
+            </div>
+
+            
+    </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="quiz-section">
+            <div class="container">
+                <h2 class="section-title">Kuis & Materi Pembelajaran</h2>
+                <p class="section-description">Perkuat pemahaman Anda melalui materi pembelajaran interaktif dan uji kemampuan dengan kuis yang telah kami siapkan!</p>
+                
+                <div class="quiz-grid">
+                    <!-- Materi & Kuis Pengukuran Dasar -->
+                    <div class="quiz-card">
+                        <div class="quiz-icon">
+                            <i class="fas fa-ruler"></i>
+                        </div>
+                        <h3 class="quiz-title">Pengukuran Dasar</h3>
+                        <p class="quiz-description">Pelajari konsep dasar pengukuran, alat ukur, dan praktikum virtual dilengkapi dengan kuis interaktif.</p>
+                        <div class="quiz-info">
+                            <span class="quiz-difficulty">Materi: 3 Bab</span>
+                            <span class="quiz-questions">Kuis: 10 Soal</span>
+                        </div>
+                        <a href="pengantar_quiz.html#pengukuran-dasar" class="btn btn-primary">Mulai Belajar</a>
+                    </div>
+                    
+                    <!-- Materi & Kuis Konversi Satuan -->
+                    <div class="quiz-card">
+                        <div class="quiz-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3 class="quiz-title">Sistem Satuan</h3>
+                        <p class="quiz-description">Pelajari berbagai sistem satuan dan teknik konversi antar satuan dengan latihan interaktif.</p>
+                        <div class="quiz-info">
+                            <span class="quiz-difficulty">Materi: 3 Bab</span>
+                            <span class="quiz-questions">Kuis: 10 Soal</span>
+                        </div>
+                        <a href="pengantar_quiz.html#konversi-satuan" class="btn btn-primary">Mulai Belajar</a>
+                    </div>
+                    
+                    <!-- Materi & Kuis Analisis Error -->
+                    <div class="quiz-card">
+                        <div class="quiz-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3 class="quiz-title">Ketidakpastian Pengukuran</h3>
+                        <p class="quiz-description">Pahami konsep ketidakpastian pengukuran dan cara menganalisis error dalam eksperimen.</p>
+                        <div class="quiz-info">
+                            <span class="quiz-difficulty">Materi: 3 Bab</span>
+                            <span class="quiz-questions">Kuis: 10 Soal</span>
+                        </div>
+                        <a href="pengantar_quiz.html#analisis-error" class="btn btn-primary">Mulai Belajar</a>
+                    </div>
+                </div>
+                
+                <!-- Call-to-Action untuk melihat semua materi -->
+                <div class="quiz-cta">
+                    <p>Siap untuk memperdalam pengetahuan Anda?</p>
+                    <a href="pengantar_quiz.html" class="btn btn-secondary">Jelajahi Semua Materi</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+      <!-- Footer Section -->
+      <footer class="footer">
+        <hr id="f-hr" />
+        <div class="footer-callout">
+            <div class="footer-logo-container">
+                <img src="/img/logo/logo.gif" alt="LabDz Logo">
+                <a href="/index.html#home">LabDz</a>
+            </div>
+            <div>
+                <h5>Siap untuk belajar?</h5>
+                <button type="button" class="btn-2 btn-callout" onclick="window.location.href='quiz.html'">
+                    Mulai Kuis <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+        <hr id="bf-hr" />
+        <div class="bottom-footer">
+            <div class="newsletter">
+                <p>Berlangganan newsletter kami</p>
+                <form id="newsletter-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="3838fe24-b6a6-4c90-94c3-7d148e36125e"/>
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+                    <input type="email" name="email_newsletter" id="email-input" placeholder="Alamat Email" required />
+                    <button type="submit"><i class="fas fa-arrow-up"></i></button>
+                </form>
+                <div id="form-message" class="form-message"></div>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-link">
+                    <h6>Materi</h6>
+                    <div class="navigation">
+                        <a href="pengantar_quiz.html#pq-card">Pengukuran Dasar</a>
+                        <a href="pengantar_quiz.html#pq-card">Konversi Satuan</a>
+                        <a href="pengantar_quiz.html#pq-card">Analisis Error</a>
+                    </div>
+                </div>
+                <div class="footer-link">
+                    <h6>Navigasi</h6>
+                    <div class="navigation">
+                        <a href="index.html#home">Beranda</a>
+                        <a href="index.html#about">Tentang</a>
+                        <a href="index.html#simulations">Simulasi</a>
+                        <a href="index.html#quiz">Kuis & Materi</a>
+                    </div>
+                </div>
+                <div class="footer-link">
+                    <h6>Bantuan</h6>
+                    <div class="navigation">
+                        <a href="contact.html">Hubungi Kami</a>
+                        <a href="faq.html">FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <hr id="bf-hr" />
+    
+        <div class="socials">
+            <div class="social-media">
+                <a class="social-box"><i class="fab fa-facebook-f"></i></a>
+                <a class="social-box"><i class="fab fa-twitter"></i></a>
+                <a class="social-box"><i class="fab fa-linkedin-in"></i></a>
+                <a class="social-box"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>© 2024 LabDz Virtual Lab. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+  <!-- Footer Section End-->
+
+    <script src="/js/script.js"></script>
+    <script src="/js/darkmode.js"></script>
+</body>
+</html>
