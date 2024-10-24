@@ -122,26 +122,20 @@ public_html/
 3. Ganti `YOUR_ACCESS_KEY_HERE` di `config.js` dengan access key Anda
 4. File `config.js` sudah ditambahkan ke .gitignore untuk keamanan
 
-Contoh `config.js`:
-```javascript
-const CONFIG = {
-    WEB3FORMS_KEY: 'your_access_key_here'
-};
-
 ## 💡 Penggunaan
 
-## Simulasi
+### Simulasi
 1. Buka bagian Simulasi
 2. Pilih jenis simulasi (Penggaris/Konverter/Kalkulator Error)
 3. Ikuti instruksi pada masing-masing simulasi
 
-## Pembelajaran
+### Pembelajaran
 1. Akses menu Kuis & Materi
 2. Pilih modul pembelajaran
 3. Ikuti materi secara berurutan
 4. Selesaikan kuis di setiap modul
 
-## FAQ & Bantuan
+### FAQ & Bantuan
 1. Akses halaman FAQ
 2. Gunakan fitur pencarian
 3. Filter berdasarkan kategori
