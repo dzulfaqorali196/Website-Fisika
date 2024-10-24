@@ -103,7 +103,10 @@ public_html/
 │   ├── script.js
 │   ├── darkmode.js
 │   ├── quiz.js
-│   └── faq.js
+│   ├── faq.js
+│   └── templateconfig/
+│       ├── config.example.js
+│       └── config.js
 └── img/
     ├── logo/
     ├── hero-page/
@@ -117,11 +120,19 @@ public_html/
 4. Atau deploy ke web server
 
 ## Setup Web3Forms
-1. Copy `config.example.js` ke `config.js`
-2. Daftar di [Web3Forms](https://web3forms.com/) untuk mendapatkan access key
-3. Ganti `YOUR_ACCESS_KEY_HERE` di `config.js` dengan access key Anda
-4. File `config.js` sudah ditambahkan ke .gitignore untuk keamanan
+1. Buat folder `templateconfig` di dalam folder `js` jika belum ada
+2. Copy `js/templateconfig/config.example.js` ke `js/templateconfig/config.js`
+3. Daftar di [Web3Forms](https://web3forms.com/) untuk mendapatkan access key
+4. Ganti `YOUR_ACCESS_KEY_HERE` di `config.js` dengan access key Anda
+5. File `js/templateconfig/config.js` sudah ditambahkan ke .gitignore untuk keamanan
 
+### Integrasi Web3Forms
+1. Pastikan sudah membuat `config.js` dari template `config.example.js`
+2. Tambahkan file config.js sebelum script.js di HTML:
+```html
+<script src="/js/templateconfig/config.js"></script>
+<script src="/js/script.js"></script>
+```
 ## 💡 Penggunaan
 
 ### Simulasi
