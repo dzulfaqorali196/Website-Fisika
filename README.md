@@ -130,18 +130,18 @@ const CONFIG = {
 
 ## 💡 Penggunaan
 
-### Simulasi
+## Simulasi
 1. Buka bagian Simulasi
 2. Pilih jenis simulasi (Penggaris/Konverter/Kalkulator Error)
 3. Ikuti instruksi pada masing-masing simulasi
 
-### Pembelajaran
+## Pembelajaran
 1. Akses menu Kuis & Materi
 2. Pilih modul pembelajaran
 3. Ikuti materi secara berurutan
 4. Selesaikan kuis di setiap modul
 
-### FAQ & Bantuan
+## FAQ & Bantuan
 1. Akses halaman FAQ
 2. Gunakan fitur pencarian
 3. Filter berdasarkan kategori
