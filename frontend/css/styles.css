@@ -1,0 +1,4135 @@
+/* Base styles and variables */
+:root {
+  /* Light theme colors (default) */
+  --primary-light: #fbc98c;
+  --primary: #fbaf69;
+  --primary-dark: #fbbb74;
+  --secondary-light: #f2978b;
+  --secondary: #e08389;
+  --secondary-dark: #e8877c;
+  --accent-1: #f2a88c;
+  --accent-2: #f6b48b;
+  --accent-3: #fbdc8a;
+  --accent-4: #ecb585;
+  --text-color: #13274c;
+  --background-color: #fff9f5;
+  --white: #ffffff;
+  /* Dark theme colors */
+  --dark-primary-light: #4a3f78;
+  --dark-primary: #635985;
+  --dark-primary-dark: #7a6f9b;
+  --dark-secondary-light: #443C68;
+  --dark-secondary: #393053;
+  --dark-secondary-dark: #18122B;
+  --dark-accent-1: #8B7E74;
+  --dark-accent-2: #9F8772;
+  --dark-accent-3: #C8B6A6;
+  --dark-accent-4: #F1DEC9;
+  --dark-text-color: #e4e4e7;
+  --dark-background-color: #18122B;
+  --dark-card-bg: #393053;
+  --dark-border-color: rgba(255, 255, 255, 0.1);
+  --dark-shadow-color: rgba(0, 0, 0, 0.3);
+  /* Other variables */
+  --header-height: 60px;  
+  --foregroundDuration: 20s;
+  --hillsDuration: 30s;
+  --rocks1Duration: 40s;
+  --rocks2Duration: 50s;
+  --content-max-width: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.container {
+  padding: 0 10px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+img,video{
+  max-width: 100%;
+  height: auto;
+}
+
+/* Header and Navigation */
+header {
+  background-color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-height);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.profile-submenu{
+  display: none;
+}
+
+header.scrolled {
+  background-color: rgba(251, 175, 105, 0.9); /* Menggunakan warna --primary dengan opacity */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header.scrolled nav ul li a {
+  color: var(--text-color);
+}
+
+header.scrolled nav ul li a:hover {
+  color: var(--white);
+}
+
+header.scrolled .logo-text {
+  color: var(--text-color);
+}
+
+/* Logo Styles */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container .logo-img {
+  height: 40px;
+  width: auto;
+  margin-right: 10px;
+}
+
+.logo-text {
+  color: var(--white);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Profile Dropdown - Desktop */
+.profile-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+/* Dropdown Container - FIXED */
+.dropdown-container {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 200px;
+  z-index: 1000;
+}
+
+/* Dropdown Menu - FIXED */
+.dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 240px; /* Increased width */
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+/* Menu Header */
+.menu-header {
+  padding: 16px;
+  background: transparent;
+  border-bottom: 1px solid #eee;
+  width: 100%; /* Ensure full width */
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%; /* Ensure full width */
+}
+
+.user-info span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.user-info small {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Menu Content */
+.menu-content {
+  padding: 8px 0;
+  width: 100%; /* Ensure full width */
+}
+
+.menu-content a {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  width: 100%; /* Ensure full width */
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.menu-content a:hover {
+  background-color: #f5f5f5;
+}
+
+.menu-content .material-symbols-outlined {
+  margin-right: 12px;
+  font-size: 20px;
+  color: #666;
+  flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+/* Show dropdown when active */
+.profile-dropdown.active .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Logout Item */
+.menu-content .logout {
+  border-top: 1px solid #eee;
+  margin-top: 8px;
+  padding-top: 8px;
+  width: 100%; /* Ensure full width */
+}
+
+.menu-content .logout .material-symbols-outlined {
+  color: #dc3545;
+}
+
+.menu-content .logout span:last-child {
+  color: #dc3545;
+}
+
+/* Ensure menu items don't wrap or compress */
+.menu-content a span {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Profile Icon */
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (min-width: 769px) {
+  .dropdown-menu {
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+  
+  .menu-content {
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+  
+  .menu-content a {
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+}
+
+
+nav {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: 3rem;
+}
+
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: var(--white);
+  font-weight: bold;
+  padding: 5px 10px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Underline animation */
+nav ul li a::after{
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: var(--white);
+  transition: all 0.3s ease;
+}
+
+nav ul li a:hover::after{
+  width: 100%;
+  left: 0;
+}
+
+nav ul li a:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.menu-trigger,
+.menu {
+  display: none;
+}
+
+/* Responsive Header and Navigation */
+@media screen and (max-width: 768px) {
+  header {
+    height: var(--header-height);
+    background-color: var(--primary);
+    margin-bottom: 0;
+    z-index: 10000;
+  }
+
+  /* Styles for scrolled state */
+  header.scrolled {
+    background-color: var(--primary-light);
+  }
+
+  header.scrolled .logo-text {
+    color: var(--white);
+  }
+
+  header.scrolled .menu-trigger-bar {
+    background-color: var(--white);
+  }
+
+  header.scrolled .menu-container {
+    background-color: var(--primary-light);
+  }
+
+  header.scrolled .menu a {
+    color: var(--white);
+  }
+
+  header.scrolled .menu a:hover {
+    color: var(--text-color);
+    background-color: rgba(255,255,255,0.2);
+  }
+
+  /* Hide desktop elements */
+  nav ul {
+    display: none;
+  }
+
+  .profile-dropdown {
+    display: none;
+  }
+
+  .profile-submenu{
+    display: block;
+  }
+
+  .logo-text {
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  /* Show menu trigger */
+  .menu-trigger {
+    display: block;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1002;
+    cursor: pointer;
+  }
+
+  .menu-trigger-bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    margin: 5px 0;
+    transition: 0.4s;
+  }
+
+  /* Menu Container */
+  .menu-container {
+    display: block;
+    position: fixed;
+    left: 0;
+    margin-top: 0;
+    top: var(--header-height);
+    width: 100%;
+    max-height: 0;
+    background-color: var(--white);
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.5s cubic-bezier(0.4, 0, 0.2, 1);    
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1001;
+    background: linear-gradient(to bottom, var(--primary-light), var(--secondary));
+  }
+
+  .menu-container.active {
+    max-height: calc(100vh - var(--header-height)); 
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Profile Section in Menu */
+  .menu-profile-item {
+    display: flex;
+    align-items: center;
+    /* padding: 15px 20px; */
+    padding:20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    background-color: #f8f9fa;
+    gap: 12px;
+  }
+
+  .menu-profile-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* margin-right: 12px; */
+  }
+
+  .menu-profile-item span {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .menu-profile-item .arrow {
+    margin-left: auto;
+    opacity: 0.5;
+  }
+
+  .menu-profile-info {
+    flex-grow: 1;
+  }
+
+  .menu-profile-info span {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+  }
+
+  /* Menu Trigger States */
+  .menu-trigger-bar {
+    background-color: var(--text-color);
+  }
+  
+  header.scrolled .menu-trigger-bar {
+    background-color: var(--white);
+  }
+
+  /* Menu List */
+  .menu {
+    list-style-type: none;
+    padding: 20px;
+    display: block;
+  }
+
+  .menu li {
+    margin: 15px 0;
+  }
+
+  .menu a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.2rem;
+    display: block;
+    padding: 10px 0;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+    overflow: hidden;
+  }
+
+  .menu a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--white);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    color: var(--white);
+  }
+
+  .menu a:hover {
+    color: var(--primary-color);
+    transform: translateX(10px);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .menu a:hover::before {
+    transform: translateX(0);
+  }
+
+  .menu a::after {
+    content: '→';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .menu a:hover::after {
+    opacity: 1;
+    transform: translate(5px, -50%);
+  }
+
+  /* Menu Trigger Animation */
+  .menu-trigger.active .menu-trigger-bar.top {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-trigger.active .menu-trigger-bar.middle {
+    opacity: 0;
+  }
+
+  .menu-trigger.active .menu-trigger-bar.bottom {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+/* Guest Actions */
+.menu-guest-actions {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid #eee;
+  background-color: #f8f9fa;
+}
+
+.menu-guest-actions a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  border-radius: 6px;
+  /* background-color: var(--primary-color); */
+  background-color: transparent;
+  border-bottom: 1px solid #eee;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Icon styling */
+.menu-guest-actions .material-symbols-outlined {
+  margin-right: 12px;
+  color: #666;
+}
+
+/* Hover effect */
+.menu-guest-actions a:hover {
+  background-color: var(--primary);
+  padding-left: 25px;
+}
+
+.menu-guest-actions .material-symbols-outlined {
+  margin-right: 12px;
+}
+
+/* Profile Submenu */
+.profile-submenu {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  background-color: white;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1002;
+}
+
+.profile-submenu.active {
+  transform: translateX(0);
+}
+
+/* Back Button */
+.back-button {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  color: var(--text-color);
+  font-weight: 500;
+  border-bottom: 1px solid #eee;
+  text-decoration: none;
+}
+
+.back-button::before {
+  content: '←';
+  margin-right: 12px;
+  font-size: 1.2rem;
+}
+
+/* Profile Menu Items */
+.profile-menu-items a {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  color: var(--text-color);
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.3s ease;
+}
+
+.profile-menu-items .material-symbols-outlined {
+  margin-right: 12px;
+  color: #666;
+}
+
+.profile-menu-items a:hover {
+  background-color: #f8f9fa;
+}
+
+/* Logout Item */
+.profile-menu-items .logout {
+  color: #dc3545;
+}
+
+.profile-menu-items .logout .material-symbols-outlined {
+  color: #dc3545;
+}
+}
+
+/* Desktop Styles */
+@media screen and (min-width: 769px) {
+  .menu-trigger,
+  .menu-container {
+    display: none;
+  }
+
+  nav ul {
+    display: flex;
+  }
+
+  .profile-dropdown {
+    display: flex;
+  }
+}
+/* Hero Section */
+.hero {
+  margin: 0;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero .content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  z-index: 10;
+  padding: 20px;
+}
+
+.animated-text {
+  font-size: 3.5em;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+  from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de; }
+  to { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00de, 0 0 70px #ff00de, 0 0 80px #ff00de, 0 0 100px #ff00de, 0 0 150px #ff00de; }
+}
+
+.tagline {
+  font-size: 1.5em;
+  margin-bottom: 30px;
+  font-style: italic;
+}
+
+.feature-icons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.icon {
+  margin: 0 20px;
+  text-align: center;
+}
+
+.icon i {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.hero h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.5em;
+  margin-bottom: 30px;
+}
+
+.scroll-indicator {
+  font-size: 1em;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scroll-indicator i {
+  display: block;
+  margin-top: 5px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Responsive Hero Section */
+@media screen and (max-width: 768px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .animated-text {
+    font-size: 2.5em;
+  }
+
+  .tagline {
+    font-size: 1.2em;
+  }
+
+  .feature-icons {
+    flex-wrap: wrap;
+  }
+
+  .icon {
+    margin: 10px;
+  }
+
+  .scroll-indicator {
+    font-size: 0.8em;  /* Smaller font size for mobile */
+  }
+
+  .scroll-indicator i {
+    font-size: 0.9em;  /* Slightly smaller icon for mobile */
+  }
+}
+
+/* Responsive For Smaller Screen */
+@media screen and (max-width: 320px){
+  .hero .content {
+    padding: 10px;
+    justify-content: flex-start;
+  }
+
+  .animated-text {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+
+  .tagline {
+    font-size: 0.8em;
+    margin-bottom: 15px;
+  }
+
+  .feature-icons {
+    margin-bottom: 15px;
+  }
+
+  .icon {
+    font-size: 0.7em;
+    margin: 5px;
+  }
+
+  .icon i {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+  }
+
+  .cta-button {
+    font-size: 0.7em;
+    padding: 8px 16px;
+    margin-top: 10px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .scroll-indicator {
+    font-size: 0.6em;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .scroll-indicator i {
+    font-size: 1em;
+    margin-top: 3px;
+  }
+}
+
+/* Parallax Effect */
+.parallax {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #f0f0f0; /* Warna placeholder selama loading */
+  left: 0;
+  top: 0;
+  opacity: 0; /* Mulai dengan opacity 0 */
+  transition: opacity 0.3s ease-in; /* Transisi smooth saat gambar load */
+}
+
+.parallax.loaded {
+  opacity: 1;
+}
+
+.parallax .layer {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat-x;
+  background-position: 0 0;
+  pointer-events: none;
+}
+
+.parallax .foreground {
+  bottom: 0;
+  height: 30%;
+  background-image: url("/frontend/img/hero-page/foreground.png");
+  background-size: auto 100%;
+  animation: slideshow var(--foregroundDuration) linear infinite;
+}
+
+.parallax .hills {
+  bottom: 15%;
+  height: 40%;
+  background-image: url("/frontend/img/hero-page/hills.png");
+  background-size: auto 100%;
+  animation: slideshow var(--hillsDuration) linear infinite;
+}
+
+.parallax .rocks1 {
+  bottom: 25%;
+  height: 35%;
+  background-image: url("/frontend/img/hero-page/rocks1.png");
+  background-size: auto 100%;
+  animation: slideshow var(--rocks1Duration) linear infinite;
+}
+
+.parallax .rocks2 {
+  bottom: 15%;
+  height: 40%;
+  background-image: url("/frontend/img/hero-page/rocks2.png");
+  background-size: auto 100%;
+  animation: slideshow var(--rocks2Duration) linear infinite;
+}
+
+.parallax-layer {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat-x;
+  background-size: 50% 100%;
+  pointer-events: none;
+}
+
+.parallax-layer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+}
+
+@keyframes slideInfinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes slideshow {
+  0% { background-position: 0 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Responsive Parallax */
+@media screen and (max-width: 768px) {
+  .parallax .layer {
+    background-size: auto 100%;
+  }
+}
+
+/* CTA Button */
+.cta-button {
+  padding: 15px 30px;
+  font-size: 1.1em;
+  background-color: #ff4500;
+  color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.cta-button:hover {
+  background-color: #ff6347;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Responsive CTA Button */
+@media screen and (max-width: 768px) {
+  .cta-button {
+    padding: 12px 24px;
+    font-size: 0.7em;
+  }
+}
+
+/* Main Content Sections */
+section {
+  padding: 2rem 1rem;
+}
+
+h2 {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+/* Responsive Main Content */
+@media screen and (max-width: 768px) {
+  main {
+    padding-top: 50px;
+  }
+
+  section {
+    padding: 1.5rem 0.5rem;
+  }
+}
+
+/* About Section Styles */
+
+/* Styling untuk container utama about section */
+.about-section {
+  background: linear-gradient(to bottom right, var(--primary-light), var(--secondary));
+  color: var(--text-color);
+  padding: 4rem 0;
+}
+
+/* Container untuk membatasi lebar konten */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Styling untuk judul utama section */
+.section-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+}
+
+/* Styling untuk deskripsi section */
+.section-description {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+}
+
+/* Layout untuk kartu-kartu fitur */
+.feature-cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Styling untuk setiap kartu fitur */
+.feature-card {
+  flex-basis: calc(33.333% - 2rem);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Efek hover untuk kartu fitur */
+.feature-card:hover {
+  transform: translateY(-5px);
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Styling dasar untuk ikon fitur */
+.feature-icon {
+  font-size: 2.5rem;
+  color: var(--accent-3);
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Efek hover untuk ikon fitur */
+.feature-card:hover .feature-icon {
+  color: var(--primary-dark);
+  transform: rotate(15deg) scale(1.2);
+}
+
+/* Animasi pulse untuk semua ikon saat di-hover */
+@keyframes iconPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.feature-card:hover .feature-icon {
+  animation: iconPulse 1s ease-in-out infinite;
+}
+
+/* Efek khusus untuk setiap jenis ikon */
+.feature-card:hover .fa-graduation-cap {
+  animation: iconWiggle 0.5s ease-in-out infinite;
+}
+
+.feature-card:hover .fa-tools {
+  animation: iconRotate 2s linear infinite;
+}
+
+.feature-card:hover .fa-chart-line {
+  animation: iconBounce 0.5s ease-in-out infinite;
+}
+
+/* Keyframes untuk animasi khusus */
+@keyframes iconWiggle {
+  0% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+  100% { transform: rotate(-5deg); }
+}
+
+@keyframes iconRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Styling untuk judul fitur */
+.feature-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+/* Styling untuk deskripsi fitur */
+.feature-description {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+/* Styling untuk tujuan about section */
+.about-goal {
+  text-align: center;
+  font-style: italic;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  color: var(--text-color);
+}
+
+/* Styling untuk area CTA */
+.about-cta {
+  text-align: center;
+}
+
+.about-cta p {
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+/* Styling dasar untuk tombol */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease; 
+  position: relative; /* Diperlukan untuk efek pseudo-element */
+}
+
+/* Styling untuk tombol utama */
+.btn-primary {
+  background-color: var(--accent-3);
+  color: var(--text-color);
+  border: 2px solid transparent; /* Border transparan untuk efek outline */
+}
+
+/* Efek hover untuk tombol utama */
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  color: var(--white);
+  transform: translateY(-5px); /* Efek mengambang saat hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan lembut */
+}
+
+/* Efek saat tombol ditekan */
+.btn-primary:active {
+  transform: translateY(-1px); /* Sedikit turun saat ditekan */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Bayangan lebih kecil */
+}
+
+/* Responsiveness untuk layar kecil */
+@media (max-width: 768px) {
+  .feature-card {
+    flex-basis: 100%;
+  }
+}
+
+/* Accessibility: Menghentikan animasi jika user memilih reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .feature-card:hover .feature-icon {
+    animation: none;
+    transform: none;
+  }
+}
+
+
+/* Simulation Content */
+/* Styling untuk section simulasi */
+#simulations {
+  padding: 2rem 1rem;
+  background: linear-gradient(to bottom right, var(--secondary), var(--primary-dark));
+}
+
+.sim-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Styling untuk setiap kotak simulasi */
+.simulation,
+#ruler-sim,
+#unit-converter,
+#error-calc {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: calc(33.333% - 20px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.simulation:hover,
+#ruler-sim:hover,
+#unit-converter:hover,
+#error-calc:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Styling untuk judul simulasi */
+#simulations h2 {
+  text-align: center;
+  font-weight: 100%;
+  user-select: none;
+}
+
+.simulation h3,
+#ruler-sim h3,
+#unit-converter h3,
+#error-calc h3 {
+  color: var(--primary-dark);
+  margin-bottom: 1rem;
+  text-align: center;
+  user-select: none;
+}
+
+
+/* Styling untuk input dan select */
+input, select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--primary-light);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Styling untuk tombol */
+button {
+  background-color: var(--accent-3);
+  color: var(--text-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: var(--primary-dark);
+  color: var(--white);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Styling khusus untuk simulasi penggaris */
+#rulerCanvas {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.control-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Styling khusus untuk konverter satuan */
+.converter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+}
+
+#swapUnits {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--primary);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#swapUnits:hover {
+  transform: rotate(180deg);
+}
+
+.category-selector {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.category-btn {
+  flex: 1;
+  margin: 0.25rem;
+  padding: 0.5rem;
+  background-color: var(--secondary-dark);
+  color: var(--text-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.category-btn.active {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+/* Styling untuk hasil dan penjelasan */
+#measurementResult, #errorResult, .explanation {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: var(--secondary-light);
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.explanation {
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* Responsivitas Simulations untuk mobile */
+@media screen and (max-width: 768px) {
+  .simulation,
+  #ruler-sim,
+  #unit-converter,
+  #error-calc {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .control-panel,
+  #caliperControls,
+  .converter-container,
+  .category-selector {
+    flex-direction: column;
+  }
+
+  input, select, button,
+  .input-group, .category-btn {
+    width: 100%;
+    margin: 0.25rem 0;
+  }
+
+  #swapUnits {
+    transform: rotate(90deg);
+}
+
+#swapUnits:hover {
+    transform: rotate(270deg);
+}
+}
+
+/* Additional responsive adjustments */
+@media screen and (max-width: 480px) {
+  .simulation,
+  #ruler-sim,
+  #unit-converter,
+  #error-calc {
+    padding: 1rem;
+  }
+
+  #rulerCanvas, {
+    height: auto;
+  }
+
+  #measurementResult,
+  #errorResult {
+    font-size: 16px;
+  }
+
+  .explanation {
+    font-size: 14px;
+  }
+}
+
+
+/* Responsive Simulation Content */
+@media screen and (max-width: 768px) {
+  .simulation {
+    width: calc(50% - 2rem);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .simulation {
+    width: 100%;
+    margin: 1rem 0;
+  }
+}
+
+
+/* Kuis Section */
+/* Styling untuk bagian kuis */
+#quiz {
+  margin-bottom: 0;
+}
+
+.quiz-section {
+  padding: 4rem 0;
+  background: linear-gradient(to bottom right, var(--primary-dark), var(--secondary));
+}
+
+/* Layout grid untuk kartu-kartu kuis */
+.quiz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Styling untuk kartu kuis individual */
+.quiz-card {
+  background: linear-gradient(145deg, var(--white) 0%, #f0f0f0 100%);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid rgba(255,255,255,0.1);
+  user-select: none;
+}
+
+.quiz-description {
+  user-select: text; /* Mengizinkan seleksi teks hanya pada deskripsi */
+}
+
+/* Efek hover untuk kartu kuis */
+.quiz-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling untuk ikon kuis */
+.quiz-icon {
+  font-size: 3.5rem;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.quiz-card:hover .quiz-icon {
+  transform: scale(1.1);
+}
+
+/* Styling untuk judul kuis */
+.quiz-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--primary-dark);
+}
+
+/* Styling untuk deskripsi kuis */
+.quiz-description {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  flex-grow: 1;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Layout untuk informasi tambahan kuis */
+.quiz-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.quiz-difficulty,
+.quiz-questions {
+  background-color: rgba(var(--primary-rgb), 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  border: 1px solid var(--primary-light);
+  color: var(--primary-dark);
+  font-weight: 500;
+}
+
+/* Styling untuk tombol utama */
+.btn-primary {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background-color: var(--primary);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Styling untuk Call-to-Action kuis */
+.quiz-cta {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.quiz-cta p{
+  margin-bottom: 1rem;
+}
+/* Styling untuk tombol sekunder */
+.btn-secondary {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background-color: transparent;
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  border: 2px solid var(--white);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-secondary:hover {
+  background-color: var(--white);
+  color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsivitas untuk perangkat mobile */
+@media (max-width: 768px) {
+  .quiz-grid {
+    grid-template-columns: 1fr; /* Mengubah layout menjadi satu kolom */
+  }
+  .quiz-card {
+    height: auto;
+  }
+}
+
+/* Footer Section */
+.footer {
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(var(--primary-dark), var(--secondary));
+  color: var(--white);
+  padding: 50px 0;
+  margin-top: 0;
+}
+
+/* Gaya dasar untuk link di footer */
+.footer a {
+  color: var(--accent-3);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.footer a:hover {
+  color: var(--text-color);
+}
+
+/* Garis pemisah horizontal - sekarang full width */
+#f-hr, #bf-hr {
+  width: 100%;
+  margin: 30px 0;
+  border: none;
+  border-top: 3px solid var(--accent-3);
+  opacity: 0.5;
+}
+
+/* Bagian ajakan (callout) di footer */
+.footer-callout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+}
+
+.footer-callout a {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.footer-callout div {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.footer-callout h5 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Styling untuk container logo dan teks */
+.footer-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Jarak antara logo dan teks */
+}
+
+/* Styling untuk logo image */
+.footer-logo-container img {
+  height: 2.5rem; /* Sesuaikan dengan tinggi teks */
+  width: auto; /* Menjaga aspek rasio */
+  object-fit: contain; /* Memastikan logo tidak terpotong */
+}
+
+/* Tombol ajakan */
+.btn-callout {
+  background-color: var(--accent-3);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  gap: 10px;
+}
+
+.btn-callout:hover {
+  background-color: var(--accent-1);
+  color: var(--white);
+}
+
+.btn-callout i {
+  font-size: 1rem;
+}
+
+/* Bagian bawah footer */
+.bottom-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
+}
+
+  /* Bagian newsletter */
+  .newsletter {
+    width: 100%;
+    max-width: 424px;
+  }
+
+  .newsletter p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .newsletter form {
+    display: flex;
+    height: 50px;
+  }
+
+  /* Memperbaiki ukuran border form input subscribe */
+  .newsletter input {
+    flex-grow: 1;
+    border: 2px solid var(--accent-3);
+    font-size: 1rem;
+    color: var(--text-color);
+    background: var(--white);
+    padding: 10px;
+    border-radius: 25px 0 0 25px;
+    text-align: center;
+    box-sizing: border-box; /* Penting: memastikan border dan padding termasuk dalam ukuran */
+    height: 100%; /* Memastikan tinggi sama dengan form */
+  }
+
+  .newsletter form button {
+    background-color: var(--accent-3);
+    color: var(--text-color);
+    border: 2px solid var(--accent-3); /* Menambahkan border yang sama dengan input */
+    padding: 10px 20px;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Penting: memastikan border dan padding termasuk dalam ukuran */
+    height: 100%; /* Memastikan tinggi sama dengan form */
+  }
+
+  .newsletter form button:hover {
+    background-color: var(--white);
+    color: var(--text-color);
+  }
+
+.newsletter form i {
+  font-size: 1rem;
+}
+
+/* Bagian link-link footer */
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.footer-link h6 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--accent-3);
+}
+
+/* Navigasi di footer */
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navigation a {
+  font-size: 1rem;
+  color: var(--white);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-left: 15px;
+  text-decoration: none;
+}
+
+/* Efek hover untuk link navigasi */
+.navigation a::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.navigation a:hover {
+  opacity: 1;
+  color: var(--accent-3);
+  transform: translateX(5px);
+}
+
+.navigation a:hover::before {
+  opacity: 1;
+  color: var(--accent-3);
+}
+
+/* Efek underline saat hover */
+.navigation a:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent-3);
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.navigation a:hover:after {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+/* Bagian media sosial */
+.socials {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  padding: 20px 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.socials p {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: var(--white);
+  opacity: 0.8;
+  text-align: center;
+}
+
+.social-media {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 15px;
+}
+
+.social-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--accent-3);
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+.social-box:before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.social-box:hover {
+  background-color: var(--accent-3);
+  border-color: var(--accent-3);
+  transform: scale(1.3);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+.social-box i {
+  font-size: 1rem;
+  color: var(--white);
+  transition: all 0.3s ease;
+}
+
+.social-box:hover i {
+  transform: scale(1.7);
+}
+
+.socials p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Pesan form (untuk feedback newsletter) */
+.form-message {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* Responsivitas Footer */
+@media (max-width: 768px) {
+  .footer-callout, .bottom-footer, .footer-links {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-callout div {
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  .newsletter, .footer-links {
+    width: 100%;
+    max-width: none;
+    margin-top: 30px;
+  }
+
+  .footer-link {
+    margin-bottom: 20px;
+  }
+
+  .socials {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Penyesuaian untuk navigasi pada mobile */
+  .navigation a {
+    padding-left: 0;
+  }
+
+  .navigation a:hover {
+    transform: none;
+  }
+
+  .navigation a::before {
+    display: none;
+  }
+}
+
+
+/* Gaya untuk konten utama kuis */
+.quiz-main {
+  padding: 40px 20px;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  min-height: calc(100vh - var(--header-height));
+}
+
+/* Container utama kuis */
+.quiz-container {
+  max-width: 800px;
+  margin: 40px auto 0;
+  background-color: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+/* Judul kuis */
+.quiz-title {
+  font-size: 2.5em;
+  color: var(--text-color);
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+/* =========================================
+   Quiz Section Container
+   ========================================= */
+   .quiz-section-1 {
+    background: linear-gradient(135deg, var(--white), #f8f9fa);
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .quiz-section-1:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header Section */
+  .quiz-section__header {
+    background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+    padding: 20px 25px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+  
+  .quiz-section__header:hover {
+    background: linear-gradient(135deg, var(--primary), var(--secondary-dark));
+  }
+  
+  .quiz-section__header h2 {
+    color: var(--white);
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .quiz-section__header i {
+    transition: transform 0.3s ease;
+    font-size: 1.2rem;
+  }
+  
+  /* Content Section */
+  .quiz-section__content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--white);
+    user-select: none;
+  }
+  
+  /* Individual Lesson Items */
+  .quiz-lesson {
+    padding: 20px 25px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    background: var(--white);
+  }
+  
+  .quiz-lesson:hover {
+    background: linear-gradient(to right, var(--white), var(--accent-2));
+    transform: translateX(5px);
+  }
+  
+  .quiz-lesson:last-child {
+    border-bottom: none;
+  }
+  
+  /* Lesson Info Section */
+  .quiz-lesson__info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+  }
+  
+  .quiz-lesson__info i {
+    font-size: 1.3rem;
+    color: var(--primary);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: rgba(251, 175, 105, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .quiz-lesson:hover .quiz-lesson__info i {
+    transform: scale(1.1);
+    background: rgba(251, 175, 105, 0.2);
+  }
+  
+  .quiz-lesson__info span {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-weight: 500;
+  }
+  
+  /* Right Section with XP and Button */
+  .quiz-lesson__right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+/* XP Badge Container */
+.quiz-lesson__xp {
+  background: linear-gradient(135deg, #4a4a4a, #333333);
+  padding: 8px 12px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 70px;
+  justify-content: center;
+}
+
+/* Star Icon */
+.quiz-lesson__xp:before {
+  content: '★';
+  color: #FFD700;
+  font-size: 0.9rem;
+}
+
+/* XP Text */
+.quiz-lesson__xp-text {
+  color: #FFB347;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* XP Value */
+.quiz-lesson__xp-value {
+  color: #FFB347;
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+/* Hover Effect */
+.quiz-lesson__xp:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+  
+  /* Learn Button */
+  .quiz-lesson__btn {
+    background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+    color: var(--white);
+    border: none;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .quiz-lesson__btn:hover {
+    background: linear-gradient(135deg, var(--secondary-dark), var(--secondary));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .quiz-lesson__btn:active {
+    transform: translateY(0);
+  }
+  
+  /* Final Quiz Button */
+  .final-quiz-btn {
+    background: linear-gradient(135deg, var(--accent-3), var(--accent-4));
+    color: var(--text-color);
+    width: calc(100% - 40px);
+    margin: 20px;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .final-quiz-btn:hover {
+    background: linear-gradient(135deg, var(--accent-4), var(--accent-3));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .final-quiz-btn:active {
+    transform: translateY(0);
+  }
+  
+  /* Progress Indicator */
+  .quiz-progress {
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-top: 10px;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  
+  .quiz-progress-bar {
+    height: 100%;
+    background-color: var(--white);
+    transition: width 0.3s ease;
+  }
+  
+  /* Completed State Styling */
+  .quiz-lesson.completed {
+    background-color: rgba(var(--primary-rgb), 0.05);
+  }
+  
+  .quiz-lesson.completed .quiz-lesson__info i {
+    color: var(--accent-3);
+  }
+  
+  .quiz-lesson.completed .quiz-lesson__xp {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--white);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .quiz-section__header {
+      padding: 15px 20px;
+    }
+  
+    .quiz-section__header h2 {
+      font-size: 1.2rem;
+    }
+  
+    .quiz-lesson {
+      padding: 15px 20px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+  
+    .quiz-lesson__right {
+      width: 100%;
+      justify-content: space-between;
+    }
+  
+    .quiz-lesson__info span {
+      font-size: 1rem;
+    }
+  
+    .final-quiz-btn {
+      width: calc(100% - 30px);
+      margin: 15px;
+      font-size: 1rem;
+    }
+  }
+  
+  /* Animation Keyframes */
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+/* =========================================
+   Lesson Modal Container & Overlay
+   ========================================= */
+   .lesson-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Darker overlay for better focus */
+    z-index: 10000000;
+    backdrop-filter: blur(5px); /* Blur effect for background */
+    animation: modalFadeIn 0.3s ease;
+  }
+  
+  /* Modal Animation */
+  @keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Modal Content Container */
+  .lesson-modal-content {
+    position: relative;
+    background: linear-gradient(to bottom right, var(--white), #f8f9fa);
+    margin: 2% auto;
+    padding: 30px;
+    width: 92%;
+    max-width: 1000px;
+    height: 90vh;
+    border-radius: 20px;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: modalSlideIn 0.4s ease;
+  }
+  
+  @keyframes modalSlideIn {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Custom Scrollbar */
+  .lesson-modal-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .lesson-modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+  
+  .lesson-modal-content::-webkit-scrollbar-thumb {
+    background: var(--primary-light);
+    border-radius: 4px;
+  }
+  
+  .lesson-modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+  }
+  
+  /* =========================================
+     Modal Header Section
+     ========================================= */
+  .lesson-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--secondary-light);
+    user-select: none;
+  }
+  
+  #lessonTitle {
+    font-size: 2rem;
+    color: var(--text-color);
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  .close-lesson {
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--secondary);
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  
+  .close-lesson:hover {
+    background-color: var(--secondary-light);
+    color: var(--text-color);
+    transform: rotate(90deg);
+  }
+  
+  /* =========================================
+     Progress Tracking
+     ========================================= */
+  .lesson-progress {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    background: var(--white);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .progress-bar {
+    flex-grow: 1;
+    height: 10px;
+    background-color: var(--secondary-light);
+    border-radius: 10px;
+    margin-right: 15px;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  #progressIndicator {
+    height: 100%;
+    background: linear-gradient(to right, var(--primary-light), var(--primary));
+    border-radius: 10px;
+    transition: width 0.5s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  #slideCounter {
+    font-size: 1rem;
+    color: var(--text-color);
+    min-width: 60px;
+    text-align: right;
+    font-weight: 600;
+  }
+  
+  /* =========================================
+     Content Slides
+     ========================================= */
+  .lesson-slides {
+    position: relative;
+    min-height: 400px;
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    user-select: none;
+  }
+  
+  .lesson-slide {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    padding: 25px;
+  }
+  
+  .lesson-slide.active {
+    display: block;
+    opacity: 1;
+    animation: slideAppear 0.4s ease;
+  }
+  
+  @keyframes slideAppear {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Content Styling */
+  .lesson-content {
+    color: var(--text-color);
+    line-height: 1.7;
+  }
+  
+  .lesson-content h3 {
+    font-size: 1.8rem;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+  }
+  
+  .lesson-content p {
+    margin-bottom: 1.2em;
+  }
+  
+  .lesson-image {
+    margin: 25px 0;
+    text-align: center;
+  }
+  
+  .lesson-image img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .lesson-image img:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Key Points Box */
+  .key-points {
+    background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+    padding: 20px;
+    border-radius: 12px;
+    margin: 25px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .key-points h4 {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 10px;
+  }
+  
+  .key-points ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .key-points li {
+    margin: 10px 0;
+    padding-left: 25px;
+    position: relative;
+  }
+  
+  .key-points li:before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: black;
+  }
+  
+  /* =========================================
+     Quiz Elements
+     ========================================= */
+  /* Quiz Container */
+.lesson-quiz {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  user-select: none;
+}
+
+/* Quiz Title */
+.quiz-title {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--secondary-light);
+}
+
+/* Question Container */
+.question-wrapper {
+  margin-bottom: 2rem;
+}
+
+/* Question Text */
+.question-text {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* Options Container */
+.options-wrapper {
+  display: block;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Individual Option */
+.option-item {
+  display: block;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--secondary-light);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--white);
+}
+
+.option-item:hover {
+  border-color: var(--primary);
+  background: rgba(251, 175, 105, 0.05);
+  transform: translateX(5px);
+}
+
+/* Radio Button Styling */
+.option-radio {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--secondary);
+  border-radius: 50%;
+  margin-right: 15px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.option-radio:checked {
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+.option-radio:checked::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--white);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Option Text */
+.option-text {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  flex: 1;
+}
+
+/* Check Answer Button */
+.check-answer-btn {
+  background: linear-gradient(135deg, var(--accent-3), var(--accent-4));
+  color: var(--text-color);
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 2rem;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.check-answer-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.check-answer-btn:active {
+  transform: translateY(0);
+}
+
+/* Slide Counter */
+.slide-counter {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--accent-2);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .lesson-quiz {
+      padding: 1.5rem;
+  }
+
+  .question-text {
+      font-size: 1.1rem;
+  }
+
+  .option-item {
+      padding: 0.8rem 1rem;
+  }
+
+  .option-text {
+      font-size: 1rem;
+  }
+
+  .check-answer-btn {
+      width: 100%;
+      justify-content: center;
+  }
+}
+  
+  /* Feedback Messages */
+  .feedback {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    display: none;
+    animation: feedbackAppear 0.3s ease;
+  }
+  
+  @keyframes feedbackAppear {
+    from { transform: translateY(-10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  .feedback.correct {
+    background-color: rgba(40, 167, 69, 0.1);
+    border: 2px solid #28a745;
+    color: #155724;
+  }
+  
+  .feedback.incorrect {
+    background-color: rgba(220, 53, 69, 0.1);
+    border: 2px solid #dc3545;
+    color: #721c24;
+  }
+  
+  /* =========================================
+     Navigation Controls
+     ========================================= */
+  .lesson-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid var(--secondary-light);
+  }
+  
+  .nav-btn {
+    padding: 12px 25px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-btn:disabled {
+    background: var(--secondary-light);
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.7;
+  }
+  
+  .nav-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .nav-btn:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  
+  /* =========================================
+     Responsive Design
+     ========================================= */
+  @media (max-width: 768px) {
+    .lesson-modal-content {
+      width: 95%;
+      margin: 1% auto;
+      height: 98vh;
+      padding: 20px;
+    }
+  
+    #lessonTitle {
+      font-size: 1.5rem;
+    }
+  
+    .nav-btn {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+  
+    .lesson-content h3 {
+      font-size: 1.5rem;
+    }
+  
+    .key-points {
+      padding: 15px;
+    }
+  
+    .options label {
+      padding: 12px;
+    }
+  }
+  
+  /* =========================================
+     Print Styles
+     ========================================= */
+  @media print {
+    .lesson-modal {
+      position: relative;
+      display: block;
+      background: none;
+    }
+  
+    .lesson-modal-content {
+      box-shadow: none;
+      height: auto;
+    }
+  
+    .nav-btn, .close-lesson {
+      display: none;
+    }
+  }
+
+/* XP pelajaran */
+.quiz-lesson__xp {
+  color: var(--accent-4);
+  font-weight: bold;
+  margin-right: 20px;
+  font-size: 0.9em;
+  width: 60px; /* Lebar tetap untuk XP */
+  text-align: right;
+}
+
+/* Tombol pelajaran */
+.quiz-lesson__btn {
+  background-color: var(--secondary);
+  color: var(--white);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  font-weight: 600;
+  font-size: 0.9em;
+  width: 80px; /* Lebar tetap untuk tombol */
+  text-align: center;
+}
+
+.quiz-lesson__btn:hover {
+  background-color: var(--secondary-dark);
+  transform: translateY(-2px);
+}
+
+.quiz-lesson__btn:active {
+  transform: translateY(0);
+}
+
+/* Media query untuk responsivitas */
+@media (max-width: 768px) {
+  .quiz-main {
+      padding: 20px 10px;
+  }
+  .quiz-container {
+      margin-top: 20px;
+      padding: 20px;
+  }
+  .quiz-title {
+      font-size: 2em;
+  }
+  .quiz-lesson, .quiz-lesson__right {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+  .quiz-lesson__info {
+      margin-bottom: 10px;
+  }
+  .quiz-lesson__xp {
+      margin-bottom: 10px;
+      width: auto;
+      text-align: left;
+  }
+  .quiz-lesson__btn {
+      width: 100%;
+  }
+}
+
+/* Styles for pengantar_quiz.html */
+.pq-main {
+  padding-top: calc(var(--header-height) + 20px);
+  background: linear-gradient(to bottom, var(--primary-light), var(--secondary));
+  padding-bottom: 40px;
+}
+
+.pq-container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.pq-title {
+  color: var(--text-color);
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.pq-intro {
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.pq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.pq-card {
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.pq-card:hover {
+  transform: translateY(-5px);
+}
+
+.pq-card-icon {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.pq-card-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.pq-card-description {
+  margin-bottom: 15px;
+  text-align: justify;
+}
+
+.pq-card-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  color: var(--secondary);
+  user-select: none;
+}
+
+.pq-btn {
+  display: flex;
+  padding: 10px 20px;
+  background-color: var(--primary);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  justify-content: center;
+  align-items: center;
+}
+
+.pq-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-5px);
+}
+
+.pq-learning-path {
+  background-color: var(--accent-2);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  text-align: justify;
+}
+
+.pq-learning-path h2 {
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+
+.pq-learning-path ol {
+  padding-left: 20px;
+}
+
+.pq-cta {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.pq-cta h2 {
+  margin-bottom: 15px;
+}
+
+.pq-btn-large {
+  font-size: 1.1rem;
+  padding: 12px 24px;
+  margin-top: 2rem;
+  border-radius: 50px;
+  display: inline-block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pq-grid {
+      grid-template-columns: 1fr;
+  }
+  
+  .pq-title {
+      font-size: 2rem;
+  }
+
+  .pq-btn-large {
+    font-size: 0.9rem;
+  }
+
+}
+
+/* Contact Page */
+
+/* Contact Section Styling */
+.contact {
+  position: relative;
+  padding: 100px 20px 50px;
+  min-height: calc(100vh - var(--header-height));
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Background pattern */
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z' fill='rgba(255,255,255,0.1)' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.5;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.contact > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Title Styling */
+.reveal-title {
+  font-size: 3.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+  background: linear-gradient(to right, var(--white), rgba(248, 248, 248, 0.9));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInDown 1s ease-out;
+}
+
+/* Description Text */
+.reveal-text {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  animation: fadeInUp 1s ease-out 0.3s backwards;
+}
+
+/* Form Styling */
+.reveal-form {
+  background: var(--white);
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-out 0.6s backwards;
+}
+
+[data-theme="dark"] .reveal-form {
+  background: var(--dark-card-bg);
+  box-shadow: 0 8px 32px var(--dark-shadow-color);
+}
+
+/* Form Input Fields */
+.reveal-form input,
+.reveal-form textarea {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background: var(--white);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .reveal-form input,
+[data-theme="dark"] .reveal-form textarea {
+  background: var(--dark-card-bg);
+  border-color: var(--dark-border-color);
+  color: var(--dark-text-color);
+}
+
+.reveal-form input:focus,
+.reveal-form textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(251, 175, 105, 0.1);
+  outline: none;
+}
+
+[data-theme="dark"] .reveal-form input:focus,
+[data-theme="dark"] .reveal-form textarea:focus {
+  border-color: var(--dark-accent-3);
+  box-shadow: 0 0 0 4px rgba(200, 182, 166, 0.1);
+}
+
+/* Error Messages */
+.error {
+  color: var(--secondary);
+  font-size: 0.875rem;
+  margin-top: -10px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+[data-theme="dark"] .error {
+  color: var(--dark-accent-1);
+}
+
+/* Submit Button */
+.btn-2.btn-callout {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border: none;
+  border-radius: 10px;
+  color: var(--white);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-2.btn-callout:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(251, 175, 105, 0.4);
+}
+
+[data-theme="dark"] .btn-2.btn-callout {
+  background: linear-gradient(135deg, var(--dark-primary), var(--dark-secondary));
+}
+
+[data-theme="dark"] .btn-2.btn-callout:hover {
+  box-shadow: 0 5px 15px var(--dark-shadow-color);
+}
+
+.btn-2.btn-callout i {
+  transition: transform 0.3s ease;
+}
+
+.btn-2.btn-callout:hover i {
+  transform: translateY(-4px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contact {
+      padding: 80px 15px 30px;
+  }
+
+  .reveal-title {
+      font-size: 2.5rem;
+  }
+
+  .reveal-text {
+      font-size: 1rem;
+      padding: 0 15px;
+  }
+
+  .reveal-form {
+      padding: 30px 20px;
+      margin: 0 15px;
+  }
+}
+
+/* FAQ Page */
+#FAQ {
+  background: linear-gradient(to bottom, var(--primary-light), var(--secondary));
+  padding-top: calc(var(--header-height) + 2rem); /* Tambahkan padding atas sesuai tinggi header */
+  padding-bottom: 3rem;
+  min-height: 100vh; /* Minimal tinggi viewport */
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Search Bar */
+.faq-search {
+  position: relative;
+  margin: 2rem 0;
+}
+
+.faq-search input {
+  width: 100%;
+  padding: 1rem 3rem;
+  border: 2px solid var(--primary-light);
+  border-radius: 50px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.faq-search i {
+  position: absolute;
+  left: 1rem;
+  top: 40%;
+  transform: translateY(-50%);
+  color: var(--primary);
+  justify-content: center;
+  align-items: center;
+}
+
+.faq-search input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+  outline: none;
+}
+
+/* Categories */
+.faq-categories {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.category-btn {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-btn.active {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* FAQ Items */
+.faq-item {
+  border: 1px solid var(--primary-light);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: all 0,3s ease;
+  order: 0;
+}
+
+/* Fade animation for search results */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.faq-item {
+  animation: fadeIn 0.3s ease;
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: var(--background-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-icon {
+  margin-right: 1rem;
+  color: var(--primary);
+}
+
+.arrow-icon {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .arrow-icon {
+  transform: rotate(90deg);
+}
+
+.faq-answer {
+  padding: 0;
+  height: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+  padding: 1.5rem;
+  height: auto;
+  opacity: 1;
+  background-color: white;
+}
+
+/* Help Section */
+.faq-helpful {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2rem;
+  background-color: var(--background-color);
+  border-radius: 10px;
+}
+
+.help-options {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.help-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.help-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.faq-item.active .faq-answer {
+  animation: slideDown 0.3s ease forwards;
+}
+
+/* Existing CSS remains the same */
+
+/* Media Queries for Mobile Devices */
+@media screen and (max-width: 768px) {
+  /* Container adjustments */
+  .faq-container {
+      margin: 1rem;
+      padding: 1rem;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+  }
+
+  /* Header adjustments */
+  .faq-container h1 {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+  }
+
+  /* Search bar adjustments */
+  .faq-search input {
+      padding: 0.8rem 2.5rem;
+      font-size: 0.9rem;
+  }
+
+  .faq-search i {
+      font-size: 0.9rem;
+      top: 50%;
+  }
+
+/* Search highlight styles */
+mark {
+  background-color: #FFE082;
+  color: var(--text-color);
+  padding: 0 2px;
+  border-radius: 2px;
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+/* Category-specific highlight colors */
+[data-category="akun"] mark {
+  background-color: #FFCDD2;
+}
+
+[data-category="materi"] mark {
+  background-color: #C8E6C9;
+}
+
+[data-category="teknis"] mark {
+  background-color: #B3E5FC;
+}
+
+/* Active category styles */
+.faq-item[data-category].active {
+  border-left: 4px solid transparent;
+}
+
+.faq-item[data-category="akun"].active {
+  border-left-color: #F44336;
+}
+
+.faq-item[data-category="materi"].active {
+  border-left-color: #4CAF50;
+}
+
+.faq-item[data-category="teknis"].active {
+  border-left-color: #2196F3;
+}
+
+
+  /* Category buttons */
+  .faq-categories {
+      gap: 0.5rem;
+      justify-content: center;
+      margin: 1rem 0;
+  }
+
+  .category-btn {
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      min-width: calc(50% - 1rem); /* 2 buttons per row */
+      text-align: center;
+  }
+
+  /* FAQ Items */
+  .faq-item {
+      margin-bottom: 0.8rem;
+  }
+
+  .faq-question {
+      padding: 1rem;
+  }
+
+  .faq-question h3 {
+      font-size: 0.95rem;
+      margin-right: 1.5rem; /* Space for arrow */
+      line-height: 1.4;
+  }
+
+/* Category indicators */
+.category-icon {
+  padding: 8px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+[data-category="akun"] .category-icon {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #F44336;
+}
+
+[data-category="materi"] .category-icon {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
+}
+
+[data-category="teknis"] .category-icon {
+  background-color: rgba(33, 150, 243, 0.1);
+  color: #2196F3;
+}
+
+  .arrow-icon {
+      font-size: 0.8rem;
+  }
+
+  /* Answer content */
+  .faq-answer {
+      font-size: 0.9rem;
+  }
+
+  .faq-item.active .faq-answer {
+      padding: 1rem;
+  }
+
+  .faq-answer span {
+      line-height: 1.6;
+  }
+
+  /* Help section */
+  .faq-helpful {
+      margin-top: 2rem;
+      padding: 1.5rem 1rem;
+  }
+
+  .faq-helpful h3 {
+      font-size: 1.1rem;
+  }
+
+  .faq-helpful p {
+      font-size: 0.9rem;
+      margin: 0.5rem 0;
+  }
+
+  .help-options {
+      flex-direction: column;
+      gap: 0.8rem;
+  }
+
+  .help-btn {
+      width: 100%;
+      justify-content: center;
+      padding: 0.7rem;
+      font-size: 0.9rem;
+  }
+
+  /* List adjustments */
+  .faq-answer ol, 
+  .faq-answer ul {
+      padding-left: 1.2rem;
+  }
+
+  .faq-answer li {
+      margin-bottom: 0.5rem;
+  }
+
+  /* Animations */
+  .faq-item.active .faq-answer {
+      animation-duration: 0.2s; /* Slightly faster on mobile */
+  }
+
+  /* Touch area improvements */
+  .faq-question,
+  .category-btn,
+  .help-btn {
+      min-height: 44px; /* Minimum touch target size */
+  }
+
+  /* Improved spacing for nested content */
+  .faq-answer span {
+      padding: 0;
+  }
+
+  /* Add some breathing room at the bottom */
+  #FAQ {
+      padding-bottom: 4rem;
+  }
+}
+
+/* Additional improvements for very small screens */
+@media screen and (max-width: 375px) {
+  .faq-question h3 {
+      font-size: 0.9rem;
+  }
+
+  .category-btn {
+      min-width: 100%; /* Full width on very small screens */
+  }
+
+  .faq-container {
+      margin: 0.5rem;
+      padding: 0.8rem;
+  }
+}
+
+/* Landscape mode adjustments */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .faq-container {
+      max-height: 85vh;
+      overflow-y: auto;
+  }
+
+  .category-btn {
+      min-width: calc(33.33% - 1rem); /* 3 buttons per row in landscape */
+  }
+
+  .help-options {
+      flex-direction: row;
+      flex-wrap: wrap;
+  }
+
+  .help-btn {
+      width: auto;
+      flex: 1;
+  }
+}
+
+/* Ensure smooth scrolling for iOS */
+@supports (-webkit-touch-callout: none) {
+  .faq-container {
+      -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Dark Mode Class */
+.dark-mode {
+  --primary-light: var(--dark-primary-light);
+  --primary: var(--dark-primary);
+  --primary-dark: var(--dark-primary-dark);
+  --secondary-light: var(--dark-secondary-light);
+  --secondary: var(--dark-secondary);
+  --secondary-dark: var(--dark-secondary-dark);
+  --accent-1: var(--dark-accent-1);
+  --accent-2: var(--dark-accent-2);
+  --accent-3: var(--dark-accent-3);
+  --accent-4: var(--dark-accent-4);
+  --text-color: var(--dark-text-color);
+  --background-color: var(--dark-background-color);
+  --card-bg: var(--dark-card-bg);
+  --border-color: var(--dark-border-color);
+  --shadow-color: var(--dark-shadow-color);
+}
+
+/* Dark Mode Toggle Switch - Updated Design */
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  right: 5rem;
+  top: 0.8rem; /* Positioned in header */
+  z-index: 1001;
+  padding: 5px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  gap: 8px;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 28px;
+  position: relative;
+  width: 52px;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background-color: var(--primary-dark);
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+  border-radius: 34px;
+  box-shadow: inset 0 0 2px rgba(0,0,0,0.2);
+}
+
+/* Sun and Moon Icons */
+.slider:before {
+  background-color: var(--white);
+  bottom: 4px;
+  content: "☀️";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.theme-switch input:checked + .slider:before {
+  content: "🌙";
+  transform: translateX(24px);
+  background-color: var(--dark-primary);
+}
+
+.theme-switch input:checked + .slider {
+  background-color: var(--dark-accent-3);
+}
+
+/* Updated component styles for dark mode */
+.dark-mode body {
+  background-color: var(--dark-background-color);
+  color: var(--dark-text-color);
+}
+
+.dark-mode header {
+  background-color: var(--dark-secondary);
+  border-bottom: 1px solid var(--dark-border-color);
+}
+
+
+
+.dark-mode .quiz-card,
+.dark-mode .simulation,
+.dark-mode .feature-card,
+.dark-mode .lesson-modal-content {
+  background-color: var(--dark-card-bg);
+  border: 1px solid var(--dark-border-color);
+  box-shadow: 0 4px 6px var(--dark-shadow-color);
+  color: var(--dark-text-color);
+  font-weight: bold;
+}
+
+/* Dark mode - specific title styling */
+.dark-mode .quiz-card .quiz-title,
+.dark-mode .feature-card .feature-title,
+.dark-mode .feature-card h3,
+.dark-mode .quiz-card h3,
+.dark-mode .pq-card-title,
+.dark-mode .quiz-section__header h2 {
+  color: #000000;  /* Hitam solid */
+  text-shadow: none; /* Menghapus text shadow jika ada */
+}
+
+/* Hover state untuk card di dark mode */
+.dark-mode .quiz-card:hover .quiz-title,
+.dark-mode .feature-card:hover .feature-title,
+.dark-mode .feature-card:hover h3,
+.dark-mode .quiz-card:hover h3 {
+  color: #000000; /* Memastikan tetap hitam saat hover */
+}
+
+/* Card background di dark mode */
+.dark-mode .quiz-card,
+.dark-mode .feature-card {
+  background-color: var(--dark-card-bg);
+}
+
+/* Specific styling for card content in dark mode */
+.dark-mode .quiz-description,
+.dark-mode .feature-description,
+.dark-mode .quiz-card p,
+.dark-mode .feature-card p {
+  color: var(--dark-background-color); 
+}
+
+.dark-mode .footer {
+  background-image: linear-gradient(var(--dark-secondary), var(--dark-secondary-dark));
+}
+
+/* Form elements in dark mode */
+.dark-mode input,
+.dark-mode select,
+.dark-mode textarea {
+  background-color: var(--dark-secondary-dark);
+  color: var(--dark-text-color);
+  border-color: var(--dark-border-color);
+}
+
+.dark-mode input:focus,
+.dark-mode select:focus,
+.dark-mode textarea:focus {
+  border-color: var(--dark-accent-3);
+  box-shadow: 0 0 0 2px rgba(200, 182, 166, 0.2);
+}
+
+/* Buttons in dark mode */
+.dark-mode .btn-primary {
+  background-color: var(--dark-accent-3);
+  color: var(--dark-secondary-dark);
+}
+
+.dark-mode .btn-primary:hover {
+  background-color: var(--dark-accent-4);
+  transform: translateY(-2px);
+}
+
+/* Navigation in dark mode */
+.dark-mode nav ul li a {
+  color: var(--dark-text-color);
+}
+
+.dark-mode nav ul li a:hover {
+  color: var(--dark-accent-3);
+}
+
+/* Cards and containers hover effects */
+.dark-mode .quiz-card:hover,
+.dark-mode .feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px var(--dark-shadow-color);
+}
+
+/* Gradients and overlays */
+.dark-mode .hero::before {
+  background: linear-gradient(to bottom,
+    rgba(24, 18, 43, 0.8),
+    rgba(57, 48, 83, 0.6)
+  );
+}
+
+/* Modal and dialog boxes */
+.dark-mode .modal,
+.dark-mode .dialog {
+  background-color: var(--dark-card-bg);
+  border: 1px solid var(--dark-border-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .theme-switch-wrapper {
+    position: fixed;
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--dark-secondary);
+    padding: 8px;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px var(--shadow-color);
+  }
+
+  .dark-mode .theme-switch-wrapper {
+    background-color: var(--dark-secondary-light);
+  }
+}
+
+/* Smooth transition for all theme changes */
+* {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease, 
+              box-shadow 0.3s ease;
+}
+
+/* Dark mode styles untuk komponen spesifik di setiap halaman */
+
+/* Pengantar Quiz Page */
+.dark-mode .pq-main {
+  background: linear-gradient(to bottom, var(--dark-primary-light), var(--dark-secondary));
+}
+
+.dark-mode .pq-title  {
+  color: var(--dark-text-color);
+}
+
+.dark-mode .pq-card .pq-card-title h3{
+  color: var(--dark-text-color);
+}
+
+.dark-mode .pq-intro {
+  background-color: var(--dark-card-bg);
+  color: var(--dark-text-color);
+}
+
+.dark-mode .pq-card {
+  background-color: var(--dark-card-bg);
+  box-shadow: 0 4px 6px var(--dark-shadow-color);
+}
+
+
+.dark-mode .pq-card-info {
+  color: var(--dark-text-color);
+}
+
+.dark-mode .pq-card-title {
+  color: #000000;
+}
+
+.dark-mode .pq-card-description {
+  color: var(--dark-text-color);
+}
+
+.dark-mode .pq-learning-path {
+  background-color: var(--dark-secondary-light);
+  color: var(--dark-text-color);
+}
+
+/* FAQ Page */
+.dark-mode #FAQ {
+  background: linear-gradient(to bottom, var(--dark-primary-light), var(--dark-secondary));
+}
+
+.dark-mode .faq-container {
+  background-color: var(--dark-card-bg);
+}
+
+.dark-mode .faq-search input {
+  background-color: var(--dark-secondary-dark);
+  color: var(--dark-text-color);
+  border-color: var(--dark-border-color);
+}
+
+.dark-mode .category-btn {
+  background-color: var(--dark-secondary-light);
+  color: var(--dark-text-color);
+}
+
+.dark-mode .category-btn.active {
+  background-color: var(--dark-accent-3);
+  color: var(--dark-secondary-dark);
+}
+
+.dark-mode .faq-item {
+  background-color: var(--dark-card-bg);
+}
+
+.dark-mode .faq-question {
+  background-color: var(--dark-secondary-light);
+}
+
+.dark-mode .faq-question h3 {
+  color: var(--dark-text-color);
+}
+
+.dark-mode .faq-answer {
+  color: var(--dark-text-color);
+}
+
+/* Animasi dan hover states untuk dark mode */
+.dark-mode .faq-item:hover .faq-question {
+  background-color: var(--dark-secondary);
+}
+
+.dark-mode .pq-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px var(--dark-shadow-color);
+}
+
+/* Error messages dalam dark mode */
+.dark-mode .error {
+  color: #ff6b6b;
+}
+
+/* Form messages dalam dark mode */
+.dark-mode .form-message {
+  background-color: var(--dark-secondary-light);
+  color: var(--dark-text-color);
+}
+
+/* Styling untuk modal dalam dark mode */
+
+/* Quiz Page Dark Mode Styles */
+.dark-mode .quiz-main {
+  background: linear-gradient(to bottom, var(--dark-primary-light), var(--dark-secondary));
+}
+
+/* Quiz Container */
+.dark-mode .quiz-container {
+  background-color: var(--dark-card-bg);
+  box-shadow: 0 5px 20px var(--dark-shadow-color);
+}
+
+.dark-mode .quiz-title {
+  color: var(--dark-text-color);
+}
+
+/* Quiz Section Styling */
+.dark-mode .quiz-section-1 {
+  background: var(--dark-card-bg);
+  box-shadow: 0 4px 15px var(--dark-shadow-color);
+}
+
+.dark-mode .quiz-section__header {
+  background: linear-gradient(135deg, var(--dark-primary), var(--dark-secondary));
+  border-bottom: 1px solid var(--dark-border-color);
+}
+
+.dark-mode .quiz-section__header h2 {
+  color: var(--white);
+}
+
+.dark-mode .quiz-section__header i {
+  color: var(--white);
+}
+
+/* Quiz Lessons */
+.dark-mode .quiz-section__content {
+  background-color: var(--dark-card-bg);
+}
+
+.dark-mode .quiz-lesson {
+  background: var(--dark-card-bg);
+  border-bottom: 1px solid var(--dark-border-color);
+}
+
+.dark-mode .quiz-lesson:hover {
+  background: linear-gradient(to right, var(--dark-card-bg), var(--dark-secondary-light));
+}
+
+.dark-mode .quiz-lesson__info i {
+  color: var(--dark-accent-3);
+  background: rgba(200, 182, 166, 0.1);
+}
+
+.dark-mode .quiz-lesson__info span {
+  color: var(--dark-text-color);
+}
+
+/* XP Badge */
+.dark-mode .quiz-lesson__xp {
+  background: linear-gradient(135deg, var(--dark-secondary-dark), var(--dark-secondary));
+}
+
+.dark-mode .quiz-lesson__xp-text,
+.dark-mode .quiz-lesson__xp-value {
+  color: var(--dark-accent-3);
+}
+
+/* Learn Button */
+.dark-mode .quiz-lesson__btn {
+  background: linear-gradient(135deg, var(--dark-accent-3), var(--dark-accent-4));
+  color: var(--dark-secondary-dark);
+  box-shadow: 0 2px 5px var(--dark-shadow-color);
+}
+
+.dark-mode .quiz-lesson__btn:hover {
+  background: linear-gradient(135deg, var(--dark-accent-4), var(--dark-accent-3));
+  box-shadow: 0 4px 10px var(--dark-shadow-color);
+}
+
+/* Final Quiz Button */
+.dark-mode .final-quiz-btn {
+  background: linear-gradient(135deg, var(--dark-accent-3), var(--dark-accent-4));
+  color: var(--dark-secondary-dark);
+  box-shadow: 0 4px 15px var(--dark-shadow-color);
+}
+
+.dark-mode .final-quiz-btn:hover {
+  background: linear-gradient(135deg, var(--dark-accent-4), var(--dark-accent-3));
+  box-shadow: 0 6px 20px var(--dark-shadow-color);
+}
+
+/* Modal - Tetap Light Mode */
+.lesson-modal {
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+}
+
+.lesson-modal-content {
+  background: #ffffff !important;
+  color: #13274c !important;
+}
+
+.lesson-modal-header {
+  border-bottom: 2px solid #f2978b;
+}
+
+#lessonTitle {
+  color: #13274c !important;
+}
+
+.lesson-progress {
+  background: #ffffff;
+}
+
+.progress-bar {
+  background-color: #f2978b;
+}
+
+#progressIndicator {
+  background: linear-gradient(to right, #fbc98c, #fbaf69);
+}
+
+#slideCounter {
+  color: #13274c;
+}
+
+.lesson-slides {
+  background: #ffffff;
+}
+
+.lesson-content h3 {
+  color: #fbbb74;
+}
+
+.lesson-content p {
+  color: #13274c;
+}
+
+.key-points {
+  background: linear-gradient(135deg, #f6b48b, #fbdc8a);
+}
+
+.nav-btn {
+  background: linear-gradient(135deg, #fbaf69, #fbbb74);
+  color: #ffffff;
+}
+
+.nav-btn:disabled {
+  background: #f2978b;
+}
+
+.lesson-quiz {
+  background: #ffffff;
+}
+
+.option-item {
+  border: 2px solid #f2978b;
+  background: #ffffff;
+}
+
+.option-text {
+  color: #13274c;
+}
+
+/* Ensure modal content stays light in dark mode */
+.dark-mode .lesson-modal-content *:not(.nav-btn):not(.slider):not(.theme-switch) {
+  background-color: #ffffff !important;
+  color: #13274c !important;
+}
+
+/* Progress indicator in modal */
+.dark-mode .progress-bar {
+  background-color: #f2978b !important;
+}
+
+.dark-mode #progressIndicator {
+  background: linear-gradient(to right, #fbc98c, #fbaf69) !important;
+}
+
+/* Custom scrollbar for modal */
+.dark-mode .lesson-modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.dark-mode .lesson-modal-content::-webkit-scrollbar-thumb {
+  background: #fbaf69;
+}

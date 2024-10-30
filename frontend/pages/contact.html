@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- link the css -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- link the icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="shortcut icon" href="img/logo/logo.gif">
+    <!-- Scroll Reveal Library -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <title>LabDz - Hubungi Kami</title>
+  </head>
+  <body>
+    <!-- Header dengan logo dan navigasi -->
+    <header>
+        <!-- Container untuk logo -->
+        <div class="logo-container">
+            <img src="/img/logo/logo.gif" alt="Virtual Lab Logo" class="logo-img">
+            <span class="logo-text">LabDz</span>
+        </div>
+        
+        <!-- Navigasi utama -->
+        <nav>
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#simulations">Simulasi</a></li>
+                <li><a href="#quiz">Kuis & Materi</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Tombol menu untuk tampilan mobile -->
+        <div class="menu-trigger">
+            <span class="menu-trigger-bar top"></span>
+            <span class="menu-trigger-bar middle"></span>
+            <span class="menu-trigger-bar bottom"></span>
+        </div>
+    </header>
+
+    <!-- Container untuk menu mobile -->
+    <div class="menu-container">
+        <ul class="menu">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#simulations">Simulasi</a></li>
+            <li><a href="#quiz">Kuis & Materi</a></li>
+        </ul>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact">
+      <h1 class="reveal-title">Hubungi LabDz Virtual Lab</h1>
+      <p class="reveal-text">
+        Apakah Anda memiliki pertanyaan tentang layanan kami, ingin mendiskusikan proyek, atau sekadar berbincang tentang pembelajaran virtual? Kami siap mendengarkan dan membantu Anda.
+      </p>
+
+      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" class="reveal-form">
+        <input
+          type="hidden"
+          name="access_key"
+          value=""
+        />
+        <input type="text" name="name" id="name" placeholder="Nama" required />
+        <span class="error" id="nameError"></span>
+        
+        <input type="text" name="contact number" id="contactNumber" placeholder="Nomor Telepon" required pattern="[0-9]*" inputmode="numeric" minlength="10"/>
+        <span class="error" id="contactNumberError"></span>
+        
+        <input type="email" name="email" id="email" placeholder="Email" required />
+        <span class="error" id="emailError"></span>
+        
+        <textarea
+          name="description"
+          id="description"
+          cols="30"
+          rows="10"
+          placeholder="Apa yang ingin Anda sampaikan?"
+          required
+        ></textarea>
+        <span class="error" id="descriptionError"></span>
+      
+        <button type="submit" class="btn-2 btn-callout">
+          Kirim Pesan <i class="fas fa-arrow-up"></i>
+        </button>
+      </form>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <hr id="f-hr" />
+        <div class="footer-callout">
+            <div class="footer-logo-container">
+                <img src="/img/logo/logo.gif" alt="LabDz Logo">
+                <a href="/index.html#home">LabDz</a>
+            </div>
+            <div>
+                <h5>Siap untuk belajar?</h5>
+                <button type="button" class="btn-2 btn-callout" onclick="window.location.href='quiz.html'">
+                    Mulai Kuis <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+        <hr id="bf-hr" />
+        <div class="bottom-footer">
+            <div class="newsletter">
+                <p>Berlangganan newsletter kami</p>
+                <form id="newsletter-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value=""/>
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+                    <input type="email" name="email_newsletter" id="email-input" placeholder="Alamat Email" required />
+                    <button type="submit"><i class="fas fa-arrow-up"></i></button>
+                </form>
+                <div id="form-message" class="form-message"></div>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-link">
+                    <h6>Materi</h6>
+                    <div class="navigation">
+                        <a href="pengantar_quiz.html#pq-card">Pengukuran Dasar</a>
+                        <a href="pengantar_quiz.html#pq-card">Konversi Satuan</a>
+                        <a href="pengantar_quiz.html#pq-card">Analisis Error</a>
+                    </div>
+                </div>
+                <div class="footer-link">
+                    <h6>Navigasi</h6>
+                    <div class="navigation">
+                        <a href="index.html#home">Beranda</a>
+                        <a href="index.html#about">Tentang</a>
+                        <a href="index.html#simulations">Simulasi</a>
+                        <a href="index.html#quiz">Kuis & Materi</a>
+                    </div>
+                </div>
+                <div class="footer-link">
+                    <h6>Bantuan</h6>
+                    <div class="navigation">
+                        <a href="contact.html">Hubungi Kami</a>
+                        <a href="faq.html">FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <hr id="bf-hr" />
+    
+        <div class="socials">
+            <div class="social-media">
+                <a class="social-box"><i class="fab fa-facebook-f"></i></a>
+                <a class="social-box"><i class="fab fa-twitter"></i></a>
+                <a class="social-box"><i class="fab fa-linkedin-in"></i></a>
+                <a class="social-box"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>© 2024 LabDz Virtual Lab. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+  <!-- Footer Section End-->
+    <script type="text/javascript" src="/js/config.js"></script>
+    <script type="text/javascript" src="/js/script.js"></script>
+    <script type="text/javascript" src="/js/darkmode.js"></script>
+  </body>
+</html>

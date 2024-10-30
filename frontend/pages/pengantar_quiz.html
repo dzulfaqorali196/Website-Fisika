@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengantar Kuis - Virtual Lab Pengukuran dan Satuan</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Tambahkan di head untuk menggunakan Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+    <link rel="shortcut icon" href="/frontend/img/logo/logo.gif">
+    <!-- Firebase SDKs -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"></script>
+
+</head>
+<body>
+    <!-- Header dengan logo dan navigasi -->
+    <header>
+        <div class="logo-container">
+            <img src="/img/logo/logo.gif" alt="Virtual Lab Logo" class="logo-img">
+            <span class="logo-text">LabDz</span>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="index.html#home">Beranda</a></li>
+                <li><a href="index.html#about">Tentang</a></li>
+                <li><a href="index.html#simulations">Simulasi</a></li>
+                <li><a href="index.html#quiz">Kuis & Materi</a></li>
+            </ul>
+        </nav>
+        
+        <div class="menu-trigger">
+            <span class="menu-trigger-bar top"></span>
+            <span class="menu-trigger-bar middle"></span>
+            <span class="menu-trigger-bar bottom"></span>
+        </div>
+    </header>
+
+    <div class="menu-container">
+        <ul class="menu">
+            <li><a href="index.html#home">Beranda</a></li>
+            <li><a href="index.html#about">Tentang</a></li>
+            <li><a href="index.html#simulations">Simulasi</a></li>
+            <li><a href="index.html#quiz">Kuis & Materi</a></li>
+        </ul>
+    </div>
+
+    <main class="pq-main">
+        <div class="pq-container">
+            <h1 class="pq-title">Kuis dan Materi Pembelajaran</h1>
+            
+            <section class="pq-intro">
+                <p>Selamat datang di bagian Kuis dan Materi Pembelajaran Virtual Lab: Pengukuran & Satuan. Kami telah menyiapkan materi pembelajaran interaktif dan kuis yang dirancang untuk membantu Anda memahami konsep pengukuran dan satuan secara komprehensif.</p>
+                <p>Pilih topik pembelajaran yang ingin Anda pelajari:</p>
+            </section>
+    
+            <div class="pq-grid">
+                <div class="pq-card">
+                    <div class="pq-card-icon">
+                        <i class="fas fa-ruler"></i>
+                    </div>
+                    <h3 class="pq-card-title">Konsep Pengukuran</h3>
+                    <p class="pq-card-description">Pelajari konsep dasar pengukuran, alat ukur, dan praktikum virtual dilengkapi dengan kuis interaktif.</p>
+                    <div class="pq-card-info">
+                        <span class="pq-card-difficulty">Materi: 3 Bab</span>
+                        <span class="pq-card-submodules">Kuis: 10 Soal</span>
+                    </div>
+                    <a href="quiz.html#pengukuran-dasar" class="pq-btn">Mulai Belajar</a>
+                </div>
+                
+                <div class="pq-card">
+                    <div class="pq-card-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3 class="pq-card-title">Sistem Satuan</h3>
+                    <p class="pq-card-description">Pelajari berbagai sistem satuan dan teknik konversi antar satuan dengan latihan interaktif.</p>
+                    <div class="pq-card-info">
+                        <span class="pq-card-difficulty">Materi: 3 Bab</span>
+                        <span class="pq-card-submodules">Kuis: 10 Soal</span>
+                    </div>
+                    <a href="quiz.html#konversi-satuan" class="pq-btn">Mulai Belajar</a>
+                </div>
+                
+                <div class="pq-card">
+                    <div class="pq-card-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="pq-card-title">Ketidakpastian Pengukuran</h3>
+                    <p class="pq-card-description">Pahami konsep ketidakpastian pengukuran dan cara menganalisis error dalam eksperimen.</p>
+                    <div class="pq-card-info">
+                        <span class="pq-card-difficulty">Materi: 3 Bab</span>
+                        <span class="pq-card-submodules">Kuis: 10 Soal</span>
+                    </div>
+                    <a href="quiz.html#analisis-error" class="pq-btn">Mulai Belajar</a>
+                </div>
+            </div>
+    
+            <section class="pq-learning-path">
+                <h2>Alur Pembelajaran</h2>
+                <ol>
+                    <li>Mulai dengan mempelajari Konsep Pengukuran untuk memahami dasar-dasar pengukuran.</li>
+                    <li>Lanjutkan ke Sistem Satuan untuk memahami berbagai sistem satuan dan konversinya.</li>
+                    <li>Terakhir, pelajari Ketidakpastian Pengukuran untuk memahami analisis error dalam pengukuran.</li>
+                </ol>
+                <p>Setiap topik dilengkapi dengan materi pembelajaran, latihan interaktif, dan kuis untuk menguji pemahaman Anda.</p>
+            </section>
+    
+            <div class="pq-cta">
+                <h2>Siap untuk Memperdalam Pengetahuan?</h2>
+                <p>Pilih salah satu topik di atas atau jelajahi seluruh materi pembelajaran kami.</p>
+                <a href="quiz.html" class="pq-btn pq-btn-large">Jelajahi Semua Materi</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <hr id="f-hr" />
+        <div class="footer-callout">
+            <div class="footer-logo-container">
+                <img src="/img/logo/logo.gif" alt="LabDz Logo">
+                <a href="index.html#home">LabDz</a>
+            </div>
+            <div>
+                <h5>Siap untuk belajar?</h5>
+                <button type="button" class="btn-2 btn-callout" onclick="window.location.href='quiz.html'">
+                    Mulai Kuis <i class="fas fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+        <hr id="bf-hr" />
+        <div class="bottom-footer">
+            <div class="newsletter">
+                <p>Berlangganan newsletter kami</p>
+                <form id="newsletter-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value=""/>
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+                    <input type="email" name="email_newsletter" id="email-input" placeholder="Alamat Email" required />
+                    <button type="submit"><i class="fas fa-arrow-up"></i></button>
+                </form>
+                <div id="form-message" class="form-message"></div>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-link">
+                    <h6>Materi</h6>
+                    <div class="navigation">
+                        <div class="navigation">
+                            <a href="pengantar_quiz.html#pq-card">Pengukuran Dasar</a>
+                            <a href="pengantar_quiz.html#pq-card">Konversi Satuan</a>
+                            <a href="pengantar_quiz.html#pq-card">Analisis Error</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-link">
+                    <h6>Navigasi</h6>
+                    <div class="navigation">
+                        <a href="index.html#home">Beranda</a>
+                        <a href="index.html#about">Tentang</a>
+                        <a href="index.html#simulations">Simulasi</a>
+                        <a href="pengantar_quiz.html">Kuis & Materi</a>
+                    </div>
+                </div>
+                <div class="footer-link">
+                    <h6>Bantuan</h6>
+                    <div class="navigation">
+                        <a href="contact.html">Hubungi Kami</a>
+                        <a href="faq.html">FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <hr id="bf-hr" />
+    
+        <div class="socials">
+            <div class="social-media">
+                <a href="#" class="social-box"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-box"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-box"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-box"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>© 2024 LabDz Virtual Lab. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="/js/config.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/darkmode.js"></script>
+</body>
+</html>

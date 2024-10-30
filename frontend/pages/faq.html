@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="shortcut icon" href="img/logo/logo.gif">
+</head>
+<body>
+    <!-- Header dengan logo dan navigasi -->
+    <header>
+        <!-- Container untuk logo -->
+        <div class="logo-container">
+            <img src="/img/logo/logo.gif" alt="Virtual Lab Logo" class="logo-img">
+            <span class="logo-text">LabDz</span>
+        </div>
+        
+        <!-- Navigasi utama -->
+        <nav>
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#simulations">Simulasi</a></li>
+                <li><a href="#quiz">Kuis & Materi</a></li>
+            </ul>
+        </nav>
+
+        <!-- Tombol menu untuk tampilan mobile -->
+        <div class="menu-trigger">
+            <span class="menu-trigger-bar top"></span>
+            <span class="menu-trigger-bar middle"></span>
+            <span class="menu-trigger-bar bottom"></span>
+        </div>
+    </header>
+
+    <!-- Container untuk menu mobile -->
+    <div class="menu-container">
+        <ul class="menu">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#simulations">Simulasi</a></li>
+            <li><a href="#quiz">Kuis & Materi</a></li>
+        </ul>
+    </div>
+
+    <main id="FAQ">
+        <div class="faq-container">
+            <h1>Frequently Asked Questions</h1>
+            
+            <!-- Tambahkan search bar -->
+            <div class="faq-search">
+                <i class="fas fa-search"></i>
+                <input type="text" id="faqSearch" placeholder="Cari pertanyaan...">
+            </div>
+
+            <!-- Tambahkan kategori filter -->
+            <div class="faq-categories">
+                <button class="category-btn active" data-category="all">Semua</button>
+                <button class="category-btn" data-category="akun">Akun</button>
+                <button class="category-btn" data-category="materi">Materi</button>
+                <button class="category-btn" data-category="teknis">Teknis</button>
+            </div>
+
+            <!-- FAQ Items List -->
+            <ul class="faq-list">
+                <!-- Kategori Akun -->
+                <li class="faq-item" data-category="akun">
+                    <div class="faq-question">
+                        <i class="fas fa-user-circle category-icon"></i>
+                        <h3>Bagaimana cara mendaftar di Virtual Lab ini?</h3>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <span>
+                            Langkah-langkah mendaftar:
+                            <ol>
+                                <li>Klik tombol "Daftar" di pojok kanan atas</li>
+                                <li>Isi formulir dengan data yang valid</li>
+                                <li>Verifikasi email Anda</li>
+                                <li>Selesai! Anda bisa langsung mulai belajar</li>
+                            </ol>
+                        </span>
+                    </div>
+                </li>
+
+                <li class="faq-item" data-category="akun">
+                    <div class="faq-question">
+                        <i class="fas fa-key category-icon"></i>
+                        <h3>Bagaimana jika lupa password?</h3>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <span>
+                            Untuk mereset password:
+                            <ol>
+                                <li>Klik "Lupa Password" di halaman login</li>
+                                <li>Masukkan email terdaftar Anda</li>
+                                <li>Cek email untuk link reset password</li>
+                                <li>Buat password baru yang kuat</li>
+                            </ol>
+                        </span>
+                    </div>
+                </li>
+
+                <li class="faq-item" data-category="akun">
+                    <div class="faq-question">
+                        <i class="fas fa-cog category-icon"></i>
+                        <h3>Bagaimana cara mengubah profil saya?</h3>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <span>
+                            Untuk mengubah profil:
+                            <ol>
+                                <li>Login ke akun Anda</li>
+                                <li>Klik foto profil di pojok kanan atas</li>
+                                <li>Pilih "Pengaturan Profil"</li>
+                                <li>Ubah informasi yang diinginkan</li>
+                                <li>Klik "Simpan Perubahan"</li>
+                            </ol>
+                        </span>
+                    </div>
+                </li>
+
+                <!-- Kategori Materi -->
+                <li class="faq-item" data-category="materi">
+                    <div class="faq-question">
+                        <i class="fas fa-book category-icon"></i>
+                        <h3>Bagaimana cara mengakses materi pembelajaran?</h3>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <span>
+                            Untuk mengakses materi:
+                            <ol>
+                                <li>Login ke akun Anda</li>
+                                <li>Klik menu "Kuis & Materi"</li>
+                                <li>Pilih topik yang ingin dipelajari</li>
+                                <li>Klik tombol "Pelajari" pada modul yang diinginkan</li>
+                            </ol>
+                        </span>
+                    </div>
+                </li>
+
+                <li class="faq-item" data-category="materi">
+                    <div class="faq-question">
+                        <i class="fas fa-medal category-icon"></i>
+                        <h3>Apakah ada sertifikat setelah menyelesaikan kuis?</h3>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <span>
+                            Ya! Anda akan mendapatkan sertifikat digital setelah:
+                            <ul>
+                                <li>Menyelesaikan seluruh modul dalam satu topik</li>
+                                <li>Mendapatkan nilai minimal 70 di quiz akhir</li>
+                                <li>Sertifikat dapat diunduh dalam format PDF</li>
+                                <li>Sertifikat mencantumkan nilai dan tanggal penyelesaian</li>
+                            </ul>
+                        </span>
+                    </div>
+                </li>
+
+                <li class="faq-item" data-category="materi">
+                    <div class="faq-question">
+                        <i class="fas fa-sync category-icon"></i>
+                        <h3>Apa yang harus dilakukan jika tidak lulus kuis?</h3>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <span>
+                            Jangan khawatir! Anda dapat:
+                            <ul>
+                                <li>Mengulang materi pembelajaran</li>
+                                <li>Mencatat poin-poin yang masih belum dipahami</li>
+                                <li>Mengerjakan latihan tambahan yang tersedia</li>
+                                <li>Mencoba kuis kembali setelah 24 jam</li>
+                            </ul>
+                        </span>
+                    </div>
+                </li>
+
+                <!-- Kategori Teknis -->
+                <li class="faq-item" data-category="teknis">
+                    <div class="faq-question">
+                        <i class="fas fa-laptop category-icon"></i>
+                        <h3>Apa spesifikasi minimum untuk menggunakan Virtual Lab?</h3>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <span>
+                            Spesifikasi minimum yang dibutuhkan:
+                            <ul>
+                                <li>Browser terbaru (Chrome, Firefox, Safari, Edge)</li>
+                                <li>Koneksi internet minimal 1 Mbps</li>
+                                <li>RAM minimal 2GB</li>
+                                <li>Layar dengan resolusi minimal 1024x768</li>
+                            </ul>
+                        </span>
+                    </div>
+                </li>
+
+                <li class="faq-item" data-category="teknis">
+                    <div class="faq-question">
+                        <i class="fas fa-mobile-alt category-icon"></i>
+                        <h3>Apakah Virtual Lab bisa diakses di perangkat mobile?</h3>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <span>
+                            Ya! Virtual Lab kami responsif dan dapat diakses di:
+                            <ul>
+                                <li>Smartphone Android & iOS</li>
+                                <li>Tablet dengan layar minimal 7 inci</li>
+                                <li>Semua orientasi layar (portrait/landscape)</li>
+                                <li>Namun untuk pengalaman terbaik, kami sarankan menggunakan desktop/laptop</li>
+                            </ul>
+                        </span>
+                    </div>
+                </li>
+
+                <li class="faq-item" data-category="teknis">
+                    <div class="faq-question">
+                        <i class="fas fa-exclamation-circle category-icon"></i>
+                        <h3>Apa yang harus dilakukan jika terjadi error?</h3>
+                        <i class="fas fa-chevron-right arrow-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <span>
+                            Langkah-langkah penanganan error:
+                            <ol>
+                                <li>Refresh halaman website</li>
+                                <li>Bersihkan cache browser</li>
+                                <li>Pastikan koneksi internet stabil</li>
+                                <li>Jika masih berlanjut, hubungi tim support kami</li>
+                            </ol>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Helpful section -->
+            <div class="faq-helpful">
+                <h3>Tidak menemukan jawaban?</h3>
+                <p>Hubungi tim support kami melalui:</p>
+                <div class="help-options">
+                    <a href="contact.html" class="help-btn">
+                        <i class="fas fa-envelope"></i>
+                        Email Support
+                    </a>
+                    <a href="#" class="help-btn whatsapp-btn" id="whatsappButton">
+                        <i class="fab fa-whatsapp"></i>
+                        WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+          <!-- Footer Section -->
+          <footer class="footer">
+            <hr id="f-hr" />
+            <div class="footer-callout">
+                <div class="footer-logo-container">
+                    <img src="/img/logo/logo.gif" alt="LabDz Logo">
+                    <a href="/index.html#home">LabDz</a>
+                </div>
+                <div>
+                    <h5>Siap untuk belajar?</h5>
+                    <button type="button" class="btn-2 btn-callout" onclick="window.location.href='quiz.html'">
+                        Mulai Kuis <i class="fas fa-arrow-up"></i>
+                    </button>
+                </div>
+            </div>
+            <hr id="bf-hr" />
+            <div class="bottom-footer">
+                <div class="newsletter">
+                    <p>Berlangganan newsletter kami</p>
+                    <form id="newsletter-form" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value=""/>
+                        <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+                        <input type="email" name="email_newsletter" id="email-input" placeholder="Alamat Email" required />
+                        <button type="submit"><i class="fas fa-arrow-up"></i></button>
+                    </form>
+                    <div id="form-message" class="form-message"></div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-link">
+                        <h6>Materi</h6>
+                        <div class="navigation">
+                            <a href="pengantar_quiz.html#pq-card">Pengukuran Dasar</a>
+                            <a href="pengantar_quiz.html#pq-card">Konversi Satuan</a>
+                            <a href="pengantar_quiz.html#pq-card">Analisis Error</a>
+                        </div>
+                    </div>
+                    <div class="footer-link">
+                        <h6>Navigasi</h6>
+                        <div class="navigation">
+                            <a href="index.html#home">Beranda</a>
+                            <a href="index.html#about">Tentang</a>
+                            <a href="index.html#simulations">Simulasi</a>
+                            <a href="index.html#quiz">Kuis & Materi</a>
+                        </div>
+                    </div>
+                    <div class="footer-link">
+                        <h6>Bantuan</h6>
+                        <div class="navigation">
+                            <a href="contact.html">Hubungi Kami</a>
+                            <a href="faq.html">FAQ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <hr id="bf-hr" />
+        
+            <div class="socials">
+                <div class="social-media">
+                    <a class="social-box"><i class="fab fa-facebook-f"></i></a>
+                    <a class="social-box"><i class="fab fa-twitter"></i></a>
+                    <a class="social-box"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="social-box"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p>© 2024 LabDz Virtual Lab. Hak Cipta Dilindungi.</p>
+            </div>
+        </footer>
+      <!-- Footer Section End-->
+    
+        <script src="/js/config.js"></script>
+        <script src="/js/script.js"></script>
+        <script src="/js/faq.js"></script>
+        <script src="/js/darkmode.js"></script>
+</body>
+</html>

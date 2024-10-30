@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - LabDz Virtual Lab</title>
+    <style>
+        /* Basic styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding-top: 20px;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        form {
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            font-size: 2rem;
+            color: #333333;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        .sign-in-google {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e0e0e0;
+            color: #333333;
+            font-weight: 500;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .sign-in-google img {
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .sign-in-google:hover {
+            background-color: #c0c0c0;
+        }
+
+        .or-divider {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .or-divider hr {
+            flex-grow: 1;
+            border: 0;
+            height: 1px;
+            background-color: #cccccc;
+        }
+
+        .or-divider p {
+            margin: 0 10px;
+            color: #666666;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            color: #333333;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #cccccc;
+            border-radius: 10px;
+            font-size: 1rem;
+            color: #333333;
+        }
+
+        .checkbox-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-container label {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #333333;
+        }
+
+        .checkbox-container input {
+            margin-right: 5px;
+        }
+
+        .forgot-password {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #4a90e2;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #357ab8;
+        }
+
+        .register-link {
+            margin-top: 15px;
+            color: #333333;
+            font-size: 0.9rem;
+        }
+
+        .register-link a {
+            color: #007bff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #888888;
+            font-size: 0.8rem;
+        }
+
+        .footer a {
+            color: #333333;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #000000;
+        }
+
+        .error-message {
+            color: red;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form id="loginForm">
+                <h3>Sign In</h3>
+                <p>Enter your email and password</p>
+
+                <div class="sign-in-google">
+                    <img src="https://raw.githubusercontent.com/Loopple/loopple-public-assets/main/motion-tailwind/img/logos/logo-google.png" alt="Google logo">
+                    Sign in with Google
+                </div>
+
+                <div class="or-divider">
+                    <hr>
+                    <p>or</p>
+                    <hr>
+                </div>
+
+                <label for="email">Email*</label>
+                <input id="email" type="email" placeholder="example@gmail.com" required>
+                
+                <label for="password">Password*</label>
+                <input id="password" type="password" placeholder="Enter a password" required>
+                
+                <div class="checkbox-container">
+                    <label>
+                        <input type="checkbox" checked>
+                        Keep me logged in
+                    </label>
+                    <a href="#" class="forgot-password">Forget password?</a>
+                </div>
+
+                <div class="error-message" id="loginError"></div>
+                <button class="submit-btn">Sign In</button>
+                <p class="register-link">Not registered yet? <a href="register.html">Create an Account</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js" type="module"></script>
+    
+    <!-- Firebase Config -->
+    <script src="../js/client-auth/firebase-config.js" type="module"></script>
+    <script src="../js/client-auth/client-auth.js" type="module"></script>    
+    
+    <!-- Form Handler -->
+    <script type="module">
+        import { auth } from '../js/client-auth/firebase-config.js';
+        import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        // Handle form submission
+        const loginForm = document.getElementById('loginForm');
+        const loginError = document.getElementById('loginError');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                console.log('Login berhasil:', userCredential.user);
+                
+                // Dapatkan token untuk API calls
+                const token = await userCredential.user.getIdToken();
+                localStorage.setItem('authToken', token);
+                
+                // Simpan data user dasar
+                localStorage.setItem('user', JSON.stringify({
+                    uid: userCredential.user.uid,
+                    email: userCredential.user.email,
+                    displayName: userCredential.user.displayName
+                }));
+                
+                // Redirect ke halaman utama
+                window.location.href = '../index.html';
+            } catch (error) {
+                console.error('Login error:', error);
+                
+                // Tampilkan pesan error yang lebih user-friendly
+                switch(error.code) {
+                    case 'auth/invalid-email':
+                        loginError.textContent = 'Email tidak valid';
+                        break;
+                    case 'auth/user-disabled':
+                        loginError.textContent = 'Akun telah dinonaktifkan';
+                        break;
+                    case 'auth/user-not-found':
+                        loginError.textContent = 'Email tidak terdaftar';
+                        break;
+                    case 'auth/wrong-password':
+                        loginError.textContent = 'Password salah';
+                        break;
+                    default:
+                        loginError.textContent = 'Terjadi kesalahan saat login. Silakan coba lagi.';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

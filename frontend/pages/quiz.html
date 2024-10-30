@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Lab: Pengukuran dan Satuan</title>
+    <link rel="stylesheet" href="/frontend/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Tambahkan di head untuk menggunakan Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+    <link rel="shortcut icon" href="/frontend/img/logo/logo.gif">
+    <!-- Firebase SDKs -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="/frontend/img/logo/logo.gif" alt="Virtual Lab Logo" class="logo-img">
+            <span class="logo-text">LabDz</span>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav>
+            <ul>
+                <li><a href="/frontend/index.html#home">Beranda</a></li>
+                <li><a href="/frontend/index.html#about">Tentang</a></li>
+                <li><a href="/frontend/index.html#simulations">Simulasi</a></li>
+                <li><a href="/frontend/index.html#quiz">Kuis & Materi</a></li>
+            </ul>
+        </nav>
+    
+        <!-- Desktop Profile -->
+        <div class="profile-dropdown">
+            <div class="profile-icon" id="profileIcon">
+                <img src="/frontend/img/icon/profile-icon.png" alt="Profile Icon" class="profile-pic">
+            </div>
+        
+            <div class="dropdown-container">
+                <!-- Guest Menu -->
+                <div class="dropdown-menu" id="guestMenu">
+                    <div class="menu-header">
+                        <div class="user-info">
+                            <span>User</span>
+                            <small>Guest</small>
+                        </div>
+                    </div>
+                    <div class="menu-content">
+                        <a href="/frontend/pages/login.html">
+                            <span class="material-symbols-outlined">login</span>
+                            <span>Login</span>
+                        </a>
+                        <a href="/frontend/pages/register.html">
+                            <span class="material-symbols-outlined">person_add</span>
+                            <span>Register</span>
+                        </a>
+                    </div>
+                </div>
+        
+                <!-- Logged In Menu -->
+                <div class="dropdown-menu" id="loggedInMenu">
+                    <div class="menu-header">
+                        <div class="user-info">
+                            <span id="userName">User</span>
+                            <small>Go to profile</small>
+                        </div>
+                    </div>
+                    <div class="menu-content">
+                        <a href="#" class="menu-item">
+                            <span class="material-symbols-outlined">person</span>
+                            <span>Account</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <span class="material-symbols-outlined">settings</span>
+                            <span>Settings</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <span class="material-symbols-outlined">help</span>
+                            <span>Help</span>
+                        </a>
+                        <a href="/frontend/index.html" class="menu-item logout" id="logoutBtn">
+                            <span class="material-symbols-outlined">logout</span>
+                            <span>Log Out</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Mobile Menu Trigger -->
+        <div class="menu-trigger">
+            <span class="menu-trigger-bar top"></span>
+            <span class="menu-trigger-bar middle"></span>
+            <span class="menu-trigger-bar bottom"></span>
+        </div>
+    </header>
+    
+   <!-- Mobile Menu Container -->
+<div class="menu-container">
+    <!-- Profile Item - For Logged In User -->
+    <div class="menu-profile-item" id="loggedInProfile">
+        <img src="/frontend/img/icon/profile-icon.png" alt="Profile">
+        <div class="menu-profile-info">
+            <span id="mobileUserName">dzulfaqor2003</span>
+        </div>
+        <span class="arrow">→</span>
+    </div>
+
+    <!-- Guest Actions - For Non-Logged In User -->
+    <div class="menu-guest-actions" id="guestProfile" style="display: none;">
+        <a href="/frontend/pages/login.html">
+            <span class="material-symbols-outlined">login</span>
+            <span>Login</span>
+        </a>
+        <a href="/frontend/pages/register.html">
+            <span class="material-symbols-outlined">person_add</span>
+            <span>Register</span>
+        </a>
+    </div>
+
+    <!-- Menu Items -->
+    <ul class="menu">
+        <li><a href="/frontend/index.html#home">Beranda</a></li>
+        <li><a href="/frontend/index.html#about">Tentang</a></li>
+        <li><a href="/frontend/index.html#simulations">Simulasi</a></li>
+        <li><a href="/frontend/index.html#quiz">Kuis & Materi</a></li>
+    </ul>
+</div>
+
+<!-- Profile Submenu -->
+<div class="profile-submenu" id="profileSubmenu">
+    <a href="#" class="back-button">Back</a>
+    <div class="profile-menu-items">
+        <a href="#" class="menu-item">
+            <span class="material-symbols-outlined">settings</span>
+            <span>Settings</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="material-symbols-outlined">help</span>
+            <span>Help</span>
+        </a>
+        <a href="/frontend/index.html" class="menu-item logout" id="mobileLogoutBtn">
+            <span class="material-symbols-outlined">logout</span>
+            <span>Log Out</span>
+        </a>
+    </div>
+</div>
+
+        <!-- Area konten utama -->
+        <main class="quiz-main" id="main">
+            <div class="quiz-container">
+                <!-- Judul dan Progress Bar -->
+                <h1 class="quiz-title">Pengukuran & Satuan: Materi dan Kuis Lengkap</h1>
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress" style="width: 0%;"></div>
+                </div>
+
+                <!-- Modul Pengukuran Dasar -->
+                <div id="pengukuran-dasar" class="quiz-section-1">
+                    <div class="quiz-section__header">
+                        <h2>Pengukuran Dasar</h2>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="quiz-section__content">
+                        <!-- Lesson 1: Pengantar Pengukuran -->
+                        <div class="quiz-lesson" data-module-id="pengantar-pengukuran">
+                            <div class="quiz-lesson__info">
+                                <i class="fas fa-book"></i>
+                                <span>Pengantar Pengukuran</span>
+                                <div class="lesson-indicator"></div>
+                            </div>
+                            <div class="quiz-lesson__right">
+                                <div class="quiz-lesson__xp">
+                                    <span class="quiz-lesson__xp-text">XP</span>
+                                    <span class="quiz-lesson__xp-value">+10</span>
+                                </div>
+                                <button class="quiz-lesson__btn" data-module-id="pengantar-pengukuran">Pelajari</button>
+                            </div>
+                        </div>
+
+                        <!-- Lesson 2: Alat Ukur Panjang -->
+                        <div class="quiz-lesson" data-module-id="alat-ukur-panjang">
+                            <div class="quiz-lesson__info">
+                                <i class="fas fa-ruler"></i>
+                                <span>Alat Ukur Panjang</span>
+                                <div class="lesson-indicator"></div>
+                            </div>
+                            <div class="quiz-lesson__right">
+                                <div class="quiz-lesson__xp">
+                                    <span class="quiz-lesson__xp-text">XP</span>
+                                    <span class="quiz-lesson__xp-value">+15</span>
+                                </div>
+                                <button class="quiz-lesson__btn" data-module-id="alat-ukur-panjang">Pelajari</button>
+                            </div>
+                        </div>
+
+                        <!-- Lesson 3: Pengukuran Massa -->
+                        <div class="quiz-lesson" data-module-id="pengukuran-massa">
+                            <div class="quiz-lesson__info">
+                                <i class="fas fa-balance-scale"></i>
+                                <span>Pengukuran Massa</span>
+                                <div class="lesson-indicator"></div>
+                            </div>
+                            <div class="quiz-lesson__right">
+                                <div class="quiz-lesson__xp">
+                                    <span class="quiz-lesson__xp-text">XP</span>
+                                    <span class="quiz-lesson__xp-value">+12</span>
+                                </div>
+                                <button class="quiz-lesson__btn" data-module-id="pengukuran-massa">Pelajari</button>
+                            </div>
+                        </div>
+                        <button class="final-quiz-btn" data-module="pengukuran-dasar">
+                            Quiz Akhir Pengukuran Dasar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modul Konversi Satuan -->
+                <div id="konversi-satuan" class="quiz-section-1">
+                    <div class="quiz-section__header">
+                        <h2>Konversi Satuan</h2>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="quiz-section__content">
+                        <!-- Lesson 1: Dasar Konversi Satuan -->
+                        <div class="quiz-lesson" data-module-id="dasar-konversi-satuan">
+                            <div class="quiz-lesson__info">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span>Dasar Konversi Satuan</span>
+                                <div class="lesson-indicator"></div>
+                            </div>
+                            <div class="quiz-lesson__right">
+                                <div class="quiz-lesson__xp">
+                                    <span class="quiz-lesson__xp-text">XP</span>
+                                    <span class="quiz-lesson__xp-value">+10</span>
+                                </div>
+                                <button class="quiz-lesson__btn" data-module-id="dasar-konversi-satuan">Pelajari</button>
+                            </div>
+                        </div>
+
+                        <!-- Lesson 2: Konversi Satuan Panjang -->
+                        <div class="quiz-lesson" data-module-id="konversi-satuan-panjang">
+                            <div class="quiz-lesson__info">
+                                <i class="fas fa-ruler-combined"></i>
+                                <span>Konversi Satuan Panjang</span>
+                                <div class="lesson-indicator"></div>
+                            </div>
+                            <div class="quiz-lesson__right">
+                                <div class="quiz-lesson__xp">
+                                    <span class="quiz-lesson__xp-text">XP</span>
+                                    <span class="quiz-lesson__xp-value">+15</span>
+                                </div>
+                                <button class="quiz-lesson__btn" data-module-id="konversi-satuan-panjang">Pelajari</button>
+                            </div>
+                        </div>
+
+                        <!-- Lesson 3: Konversi Satuan Massa -->
+                        <div class="quiz-lesson" data-module-id="konversi-satuan-massa">
+                            <div class="quiz-lesson__info">
+                                <i class="fas fa-weight"></i>
+                                <span>Konversi Satuan Massa</span>
+                                <div class="lesson-indicator"></div>
+                            </div>
+                            <div class="quiz-lesson__right">
+                                <div class="quiz-lesson__xp">
+                                    <span class="quiz-lesson__xp-text">XP</span>
+                                    <span class="quiz-lesson__xp-value">+12</span>
+                                </div>
+                                <button class="quiz-lesson__btn" data-module-id="konversi-satuan-massa">Pelajari</button>
+                            </div>
+                        </div>
+                        <button class="final-quiz-btn" data-module="konversi-satuan">
+                            Quiz Akhir Konversi Satuan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modul Analisis Error -->
+                <div id="analisis-error" class="quiz-section-1">
+                    <div class="quiz-section__header">
+                        <h2>Analisis Error</h2>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="quiz-section__content">
+                        <!-- Lesson 1: Pengantar Analisis Error -->
+                        <div class="quiz-lesson" data-module-id="pengantar-analisis-error">
+                            <div class="quiz-lesson__info">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Pengantar Analisis Error</span>
+                                <div class="lesson-indicator"></div>
+                            </div>
+                            <div class="quiz-lesson__right">
+                                <div class="quiz-lesson__xp">
+                                    <span class="quiz-lesson__xp-text">XP</span>
+                                    <span class="quiz-lesson__xp-value">+10</span>
+                                </div>
+                                <button class="quiz-lesson__btn" data-module-id="pengantar-analisis-error">Pelajari</button>
+                            </div>
+                        </div>
+
+                        <!-- Lesson 2: Perhitungan Error Relatif -->
+                        <div class="quiz-lesson" data-module-id="perhitungan-error-relatif">
+                            <div class="quiz-lesson__info">
+                                <i class="fas fa-percentage"></i>
+                                <span>Perhitungan Error Relatif</span>
+                                <div class="lesson-indicator"></div>
+                            </div>
+                            <div class="quiz-lesson__right">
+                                <div class="quiz-lesson__xp">
+                                    <span class="quiz-lesson__xp-text">XP</span>
+                                    <span class="quiz-lesson__xp-value">+15</span>
+                                </div>
+                                <button class="quiz-lesson__btn" data-module-id="perhitungan-error-relatif">Pelajari</button>
+                            </div>
+                        </div>
+
+                        <!-- Lesson 3: Propagasi Error -->
+                        <div class="quiz-lesson" data-module-id="propagasi-error">
+                            <div class="quiz-lesson__info">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Propagasi Error</span>
+                                <div class="lesson-indicator"></div>
+                            </div>
+                            <div class="quiz-lesson__right">
+                                <div class="quiz-lesson__xp">
+                                    <span class="quiz-lesson__xp-text">XP</span>
+                                    <span class="quiz-lesson__xp-value">+18</span>
+                                </div>
+                                <button class="quiz-lesson__btn" data-module-id="propagasi-error">Pelajari</button>
+                            </div>
+                        </div>
+                        <button class="final-quiz-btn" data-module="analisis-error">
+                            Quiz Akhir Analisis Error
+                        </button>
+                    </div>
+                </div>
+        </main>
+    
+   
+    <!-- Modal untuk konten pembelajaran -->
+        <div id="lessonModal" class="lesson-modal">
+            <div class="lesson-modal-content">
+                <!-- Header Modal -->
+                <div class="lesson-modal-header">
+                    <h2 id="lessonTitle">Judul Materi</h2>
+                    <span class="close-lesson">&times;</span>
+                </div>
+
+                <!-- Progress bar -->
+                <div class="lesson-progress">
+                    <div class="progress-bar">
+                        <div id="progressIndicator" class="progress-indicator"></div>
+                    </div>
+                    <span id="slideCounter">1/10</span>
+                </div>
+
+                <!-- Container untuk slides - PENTING! -->
+                <div class="lesson-slides">
+                    <!-- Slides akan diisi oleh JavaScript -->
+                </div>
+
+                <!-- Navigasi -->
+                <div class="lesson-navigation">
+                    <button id="prevSlide" class="nav-btn" disabled>
+                        <i class="fas fa-arrow-left"></i> Sebelumnya
+                    </button>
+                    <button id="nextSlide" class="nav-btn">
+                        Selanjutnya <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+            </div>
+    
+    <!-- Footer Section -->
+    <footer class="footer">
+        <hr id="f-hr" />
+        <div class="footer-callout">
+            <div class="footer-logo-container">
+                <img src="/frontend/img/logo/logo.gif" alt="LabDz Logo">
+                <a href="/index.html#home">LabDz</a>
+            </div>
+            <div>
+                <h5>Siap untuk belajar?</h5>
+                <a href="/frontend/pages/quiz.html" class="btn-2 btn-callout">
+                    Mulai Kuis <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
+        </div>
+        <hr id="bf-hr" />
+        <div class="bottom-footer">
+            <div class="newsletter">
+                <p>Berlangganan newsletter kami</p>
+                <form id="newsletter-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value=""/>
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+                    <input type="email" name="email_newsletter" id="email-input" placeholder="Alamat Email" required />
+                    <button type="submit"><i class="fas fa-arrow-up"></i></button>
+                </form>
+                <div id="form-message" class="form-message"></div>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-link">
+                    <h6>Materi</h6>
+                    <div class="navigation">
+                        <a href="/frontend/pages/pengantar_quiz.html#pq-card">Pengukuran Dasar</a>
+                        <a href="/frontend/pages/pengantar_quiz.html#pq-card">Konversi Satuan</a>
+                        <a href="/frontend/pages/pengantar_quiz.html#pq-card">Analisis Error</a>
+                    </div>
+                </div>
+                <div class="footer-link">
+                    <h6>Navigasi</h6>
+                    <div class="navigation">
+                        <a href="/frontend/index.html#home">Beranda</a>
+                        <a href="/frontend/index.html#about">Tentang</a>
+                        <a href="/frontend/index.html#simulations">Simulasi</a>
+                        <a href="/frontend/index.html#quiz">Kuis & Materi</a>
+                    </div>
+                </div>
+                <div class="footer-link">
+                    <h6>Bantuan</h6>
+                    <div class="navigation">
+                        <a href="/frontend/pages/contact.html">Hubungi Kami</a>
+                        <a href="/frontend/pages/faq.html">FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <hr id="bf-hr" />
+    
+        <div class="socials">
+            <div class="social-media">
+                <a class="social-box"><i class="fab fa-facebook-f"></i></a>
+                <a class="social-box"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/dzulfaqor-ali-dipangegara-85bb241a1?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bn5MOct93SVK%2FKAqGYIzLBA%3D%3D" class="social-box"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/dzzulfaqorr" class="social-box"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>© 2024 LabDz Virtual Lab. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+  <!-- Footer Section End-->
+
+    <script src="/frontend/js/templateconfig/config.js"></script>
+    <script type="module" src="/frontend/js/client-auth/firebase-config.js"></script>
+    <script type="module" src="/frontend/js/client-auth/client-auth.js"></script>
+    <script src="/frontend/js/quiz.js"></script>
+    <script src="/frontend/js/darkmode.js"></script>
+    <script src="/frontend/js/script.js"></script>
+</body>
+</html>

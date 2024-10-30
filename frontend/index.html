@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>LabDz Virtual Lab - Platform Pembelajaran Fisika Interaktif</title>
+    <meta name="title" content="LabDz Virtual Lab - Platform Pembelajaran Fisika Interaktif">
+    <meta name="description" content="Platform pembelajaran fisika interaktif dengan simulasi, kuis, dan materi pembelajaran yang komprehensif. Belajar fisika jadi lebih menyenangkan!">
+    <meta name="keywords" content="virtual lab, laboratorium virtual, fisika, pembelajaran fisika, simulasi fisika, kuis fisika, materi fisika">
+    <meta name="author" content="LabDz">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://labdz.site/">
+    <meta property="og:title" content="LabDz Virtual Lab - Platform Pembelajaran Fisika Interaktif">
+    <meta property="og:description" content="Platform pembelajaran fisika interaktif dengan simulasi, kuis, dan materi pembelajaran yang komprehensif. Belajar fisika jadi lebih menyenangkan!">
+    <meta property="og:image" content="https://labdz.site/frontend/img/logo/social-preview.png">
+    <meta property="og:site_name" content="LabDz Virtual Lab">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://labdz.site/">
+    <meta property="twitter:title" content="LabDz Virtual Lab - Platform Pembelajaran Fisika Interaktif">
+    <meta property="twitter:description" content="Platform pembelajaran fisika interaktif dengan simulasi, kuis, dan materi pembelajaran yang komprehensif. Belajar fisika jadi lebih menyenangkan!">
+    <meta property="twitter:image" content="https://labdz.site/frontend/img/logo/social-preview.png">
+
+    
+    <!-- Favicon dan Touch Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/frontend/img/logo/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/frontend/img/logo/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/frontend/img/logo/apple-touch-icon.png">    
+    <link rel="manifest" href="/frontend/site.webmanifest">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Meta tags khusus Line yang diperbarui -->
+    <meta name="line-content-type" content="website">
+    <meta name="line-title" content="LabDz Virtual Lab">
+    <meta name="line-description" content="Platform pembelajaran fisika interaktif dengan simulasi, kuis, dan materi pembelajaran yang komprehensif.">
+    
+    <!-- Open Graph tags yang dioptimalkan -->
+    <meta property="og:title" content="LabDz Virtual Lab">
+    <meta property="og:description" content="Platform pembelajaran fisika interaktif dengan simulasi, kuis, dan materi pembelajaran yang komprehensif.">
+    <meta property="og:image" content="https://labdz.site/img/logo/social-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://labdz.site">
+    <meta property="og:type" content="website">
+
+    <title>Virtual Lab: Pengukuran dan Satuan</title>
+    <link rel="stylesheet" href="/frontend/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Tambahkan di head untuk menggunakan Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+    <link rel="shortcut icon" href="/frontend/img/logo/logo.gif">
+    <!-- Firebase SDKs -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js"></script>
+
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="/frontend/img/logo/logo.gif" alt="Virtual Lab Logo" class="logo-img">
+            <span class="logo-text">LabDz</span>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav>
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#simulations">Simulasi</a></li>
+                <li><a href="#quiz">Kuis & Materi</a></li>
+            </ul>
+        </nav>
+    
+        <!-- Desktop Profile -->
+        <div class="profile-dropdown">
+            <div class="profile-icon" id="profileIcon">
+                <img src="/frontend/img/icon/profile-icon.png" alt="Profile Icon" class="profile-pic">
+            </div>
+        
+            <div class="dropdown-container">
+                <!-- Guest Menu -->
+                <div class="dropdown-menu" id="guestMenu">
+                    <div class="menu-header">
+                        <div class="user-info">
+                            <span>User</span>
+                            <small>Guest</small>
+                        </div>
+                    </div>
+                    <div class="menu-content">
+                        <a href="/frontend/pages/login.html">
+                            <span class="material-symbols-outlined">login</span>
+                            <span>Login</span>
+                        </a>
+                        <a href="/frontend/pages/register.html">
+                            <span class="material-symbols-outlined">person_add</span>
+                            <span>Register</span>
+                        </a>
+                    </div>
+                </div>
+        
+                <!-- Logged In Menu -->
+                <div class="dropdown-menu" id="loggedInMenu">
+                    <div class="menu-header">
+                        <div class="user-info">
+                            <span id="userName">User</span>
+                            <small>Go to profile</small>
+                        </div>
+                    </div>
+                    <div class="menu-content">
+                        <a href="#" class="menu-item">
+                            <span class="material-symbols-outlined">person</span>
+                            <span>Account</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <span class="material-symbols-outlined">settings</span>
+                            <span>Settings</span>
+                        </a>
+                        <a href="#" class="menu-item">
+                            <span class="material-symbols-outlined">help</span>
+                            <span>Help</span>
+                        </a>
+                        <a href="/frontend/index.html" class="menu-item logout" id="logoutBtn">
+                            <span class="material-symbols-outlined">logout</span>
+                            <span>Log Out</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Mobile Menu Trigger -->
+        <div class="menu-trigger">
+            <span class="menu-trigger-bar top"></span>
+            <span class="menu-trigger-bar middle"></span>
+            <span class="menu-trigger-bar bottom"></span>
+        </div>
+    </header>
+    
+   <!-- Mobile Menu Container -->
+<div class="menu-container">
+    <!-- Profile Item - For Logged In User -->
+    <div class="menu-profile-item" id="loggedInProfile">
+        <img src="/frontend/img/icon/profile-icon.png" alt="Profile">
+        <div class="menu-profile-info">
+            <span id="mobileUserName">dzulfaqor2003</span>
+        </div>
+        <span class="arrow">→</span>
+    </div>
+
+    <!-- Guest Actions - For Non-Logged In User -->
+    <div class="menu-guest-actions" id="guestProfile" style="display: none;">
+        <a href="/frontend/pages/login.html">
+            <span class="material-symbols-outlined">login</span>
+            <span>Login</span>
+        </a>
+        <a href="/frontend/pages/register.html">
+            <span class="material-symbols-outlined">person_add</span>
+            <span>Register</span>
+        </a>
+    </div>
+
+    <!-- Menu Items -->
+    <ul class="menu">
+        <li><a href="#home">Beranda</a></li>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#simulations">Simulasi</a></li>
+        <li><a href="#quiz">Kuis & Materi</a></li>
+    </ul>
+</div>
+
+<!-- Profile Submenu -->
+<div class="profile-submenu" id="profileSubmenu">
+    <a href="#" class="back-button">Back</a>
+    <div class="profile-menu-items">
+        <a href="#" class="menu-item">
+            <span class="material-symbols-outlined">settings</span>
+            <span>Settings</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="material-symbols-outlined">help</span>
+            <span>Help</span>
+        </a>
+        <a href="/frontend/index.html" class="menu-item logout" id="mobileLogoutBtn">
+            <span class="material-symbols-outlined">logout</span>
+            <span>Log Out</span>
+        </a>
+    </div>
+</div>
+
+    <!-- main content -->
+    <main>
+        <!-- Bagian Halaman Utama (Hero Section) -->
+        <section id="home" class="hero">
+            <!-- Latar belakang dengan efek paralaks -->
+            <div class="parallax">
+                <div class="layer foreground" data-src="/frontend/img/hero-page/foreground.png"></div>
+                <div class="layer hills" data-src="/frontend/img/hero-page/hills.png"></div>
+                <div class="layer rocks1" data-src="/frontend/img/hero-page/rocks1.png"></div>
+                <div class="layer rocks2" data-src="/frontend/img/hero-page/rocks2.png"></div>
+            </div>
+
+            <!-- Konten utama dari bagian hero -->
+            <div class="content">
+                <!-- Judul utama dengan animasi -->
+                <h1 class="animated-text">Virtual Lab: Pengukuran & Satuan</h1>
+                
+                <!-- Tagline atau slogan -->
+                <p class="tagline">Jelajahi Dunia Pengukuran dengan Teknologi Interaktif</p>
+                
+                <!-- Ikon-ikon fitur -->
+                <div class="feature-icons">
+                    <!-- Ikon pengukuran presisi -->
+                    <div class="icon">
+                        <i class="fas fa-ruler"></i>
+                        <span>Pengukuran Presisi</span>
+                    </div>
+                    <!-- Ikon konversi satuan -->
+                    <div class="icon">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Konversi Satuan</span>
+                    </div>
+                    <!-- Ikon analisis error -->
+                    <div class="icon">
+                        <i class="fas fa-calculator"></i>
+                        <span>Analisis Error</span>
+                    </div>
+                </div>
+                
+                <!-- Tombol ajakan bertindak (Call-to-Action) -->
+                <a href="#simulations" class="cta-button pulse">Mulai Eksperimen</a>
+                
+                <!-- Indikator untuk scroll -->
+                <div class="scroll-indicator">
+                    <span>Scroll untuk Menjelajah</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+            <h2 class="section-title">Tentang Virtual Lab Ini</h2>
+            <p class="section-description">Selamat datang di Virtual Lab Pengukuran dan Satuan! Lab ini dirancang untuk membantu Anda memahami konsep dasar pengukuran fisika dengan cara yang interaktif dan menarik.</p>
+            
+            <!-- Feature cards -->
+            <div class="feature-cards">
+                <div class="feature-card">
+                <i class="fas fa-graduation-cap feature-icon"></i>
+                <h3 class="feature-title">Belajar Interaktif</h3>
+                <p class="feature-description">Eksplorasi konsep pengukuran melalui simulasi yang dapat dimanipulasi secara langsung.</p>
+                </div>
+                <div class="feature-card">
+                <i class="fas fa-tools feature-icon"></i>
+                <h3 class="feature-title">Alat Praktis</h3>
+                <p class="feature-description">Gunakan alat-alat virtual untuk melakukan pengukuran dan konversi satuan dengan mudah.</p>
+                </div>
+                <div class="feature-card">
+                <i class="fas fa-chart-line feature-icon"></i>
+                <h3 class="feature-title">Analisis Error</h3>
+                <p class="feature-description">Pelajari cara menghitung dan memahami error dalam pengukuran ilmiah.</p>
+                </div>
+            </div>
+            
+            <p class="about-goal">Tujuan kami adalah membantu Anda membangun dasar yang kuat dalam pemahaman pengukuran fisika, yang penting untuk studi lanjutan di bidang sains dan teknologi.</p>
+            
+            <!-- Call to Action -->
+            <div class="about-cta">
+                <p>Siap untuk memulai perjalanan pembelajaran Anda?</p>
+                <a href="#simulations" class="btn btn-primary">Jelajahi Simulasi</a>
+            </div>
+            </div>
+        </section>
+
+        <!-- Simulation Section -->
+    <section id="simulations">
+        <h2 class="">Simulasi Interaktif</h2>
+        <div class="sim-container">
+            <!-- Simulasi Pengukuran dengan Penggaris -->
+            <div id="ruler-sim" class="simulation">
+                <h3>Pengukuran dengan Penggaris</h3>
+                <canvas id="rulerCanvas" width="400" height="200"></canvas>
+                <div class="control-panel">
+                    <button id="newMeasurement">Objek Baru</button>
+                    <select id="unitSelect"></select>
+                    <div id="measurementResult"></div>
+                </div>
+            </div>
+            
+            <!-- Simulasi Konverter Satuan -->
+            <div id="unit-converter" class="simulation">
+                <h3>Konverter Satuan Universal</h3>
+                <div class="converter-container">
+                    <div class="input-group">
+                        <input type="number" id="fromValue" placeholder="Nilai">
+                        <select id="fromUnit"></select>
+                    </div>
+                    <div class="swap-container">
+                        <button id="swapUnits" aria-label="Tukar unit">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                    </div>                    
+                    <div class="input-group">
+                        <input type="number" id="toValue" readonly placeholder="Hasil">
+                        <select id="toUnit"></select>
+                    </div>
+                </div>
+                <div class="category-selector">
+                    <button class="category-btn active" data-category="length">Panjang</button>
+                    <button class="category-btn" data-category="mass">Massa</button>
+                    <button class="category-btn" data-category="volume">Volume</button>
+                    <button class="category-btn" data-category="temperature">Suhu</button>
+                </div>
+            </div>
+            
+            <!-- Simulasi Kalkulator Error Pengukuran -->
+            <div id="error-calc" class="simulation">
+                <h3>Kalkulator Error Pengukuran</h3>
+                <div class="input-group">
+                    <label for="measuredValue">Nilai Terukur:</label>
+                    <input type="number" id="measuredValue" placeholder="Contoh: 10.5">
+                </div>
+                <div class="input-group">
+                    <label for="actualValue">Nilai Sebenarnya:</label>
+                    <input type="number" id="actualValue" placeholder="Contoh: 10.0">
+                </div>
+                <button id="calculateError">Hitung Error</button>
+                <div id="errorResult"></div>
+                <div id="errorExplanation" class="explanation"></div>
+            </div>
+
+            
+    </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="quiz-section">
+            <div class="container">
+                <h2 class="section-title">Kuis & Materi Pembelajaran</h2>
+                <p class="section-description">Perkuat pemahaman Anda melalui materi pembelajaran interaktif dan uji kemampuan dengan kuis yang telah kami siapkan!</p>
+                
+                <div class="quiz-grid">
+                    <!-- Materi & Kuis Pengukuran Dasar -->
+                    <div class="quiz-card">
+                        <div class="quiz-icon">
+                            <i class="fas fa-ruler"></i>
+                        </div>
+                        <h3 class="quiz-title">Pengukuran Dasar</h3>
+                        <p class="quiz-description">Pelajari konsep dasar pengukuran, alat ukur, dan praktikum virtual dilengkapi dengan kuis interaktif.</p>
+                        <div class="quiz-info">
+                            <span class="quiz-difficulty">Materi: 3 Bab</span>
+                            <span class="quiz-questions">Kuis: 10 Soal</span>
+                        </div>
+                        <a href="/frontend/pages/quiz.html#main" class="btn btn-primary">Mulai Belajar</a>
+                    </div>
+                    
+                    <!-- Materi & Kuis Konversi Satuan -->
+                    <div class="quiz-card">
+                        <div class="quiz-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3 class="quiz-title">Sistem Satuan</h3>
+                        <p class="quiz-description">Pelajari berbagai sistem satuan dan teknik konversi antar satuan dengan latihan interaktif.</p>
+                        <div class="quiz-info">
+                            <span class="quiz-difficulty">Materi: 3 Bab</span>
+                            <span class="quiz-questions">Kuis: 10 Soal</span>
+                        </div>
+                        <a href="/frontend/pages/quiz.html#main#konversi-satuan" class="btn btn-primary">Mulai Belajar</a>
+                    </div>
+                    
+                    <!-- Materi & Kuis Analisis Error -->
+                    <div class="quiz-card">
+                        <div class="quiz-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3 class="quiz-title">Ketidakpastian Pengukuran</h3>
+                        <p class="quiz-description">Pahami konsep ketidakpastian pengukuran dan cara menganalisis error dalam eksperimen.</p>
+                        <div class="quiz-info">
+                            <span class="quiz-difficulty">Materi: 3 Bab</span>
+                            <span class="quiz-questions">Kuis: 10 Soal</span>
+                        </div>
+                        <a href="/frontend/pages/quiz.html#main" class="btn btn-primary">Mulai Belajar</a>
+                    </div>
+                </div>
+                
+                <!-- Call-to-Action untuk melihat semua materi -->
+                <div class="quiz-cta">
+                    <p>Siap untuk memperdalam pengetahuan Anda?</p>
+                    <a href="/frontend/pages/pengantar_quiz.html" class="btn btn-secondary">Jelajahi Semua Materi</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+      <!-- Footer Section -->
+      <footer class="footer">
+        <hr id="f-hr" />
+        <div class="footer-callout">
+            <div class="footer-logo-container">
+                <img src="/frontend/img/logo/logo.gif" alt="LabDz Logo">
+                <a href="/index.html#home">LabDz</a>
+            </div>
+            <div>
+                <h5>Siap untuk belajar?</h5>
+                <a href="/frontend/pages/quiz.html" class="btn-2 btn-callout">
+                    Mulai Kuis <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
+        </div>
+        <hr id="bf-hr" />
+        <div class="bottom-footer">
+            <div class="newsletter">
+                <p>Berlangganan newsletter kami</p>
+                <form id="newsletter-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value=""/>
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success" />
+                    <input type="email" name="email_newsletter" id="email-input" placeholder="Alamat Email" required />
+                    <button type="submit"><i class="fas fa-arrow-up"></i></button>
+                </form>
+                <div id="form-message" class="form-message"></div>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-link">
+                    <h6>Materi</h6>
+                    <div class="navigation">
+                        <a href="/frontend/pages/pengantar_quiz.html#pq-card">Pengukuran Dasar</a>
+                        <a href="/frontend/pages/pengantar_quiz.html#pq-card">Konversi Satuan</a>
+                        <a href="/frontend/pages/pengantar_quiz.html#pq-card">Analisis Error</a>
+                    </div>
+                </div>
+                <div class="footer-link">
+                    <h6>Navigasi</h6>
+                    <div class="navigation">
+                        <a href="/frontend/index.html#home">Beranda</a>
+                        <a href="/frontend/index.html#about">Tentang</a>
+                        <a href="/frontend/index.html#simulations">Simulasi</a>
+                        <a href="/frontend/index.html#quiz">Kuis & Materi</a>
+                    </div>
+                </div>
+                <div class="footer-link">
+                    <h6>Bantuan</h6>
+                    <div class="navigation">
+                        <a href="/frontend/pages/contact.html">Hubungi Kami</a>
+                        <a href="/frontend/pages/faq.html">FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <hr id="bf-hr" />
+    
+        <div class="socials">
+            <div class="social-media">
+                <a class="social-box"><i class="fab fa-facebook-f"></i></a>
+                <a class="social-box"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.linkedin.com/in/dzulfaqor-ali-dipangegara-85bb241a1?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bn5MOct93SVK%2FKAqGYIzLBA%3D%3D" class="social-box"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/dzzulfaqorr" class="social-box"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>© 2024 LabDz Virtual Lab. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+  <!-- Footer Section End-->
+    <!-- lazy loading -->
+     <script>
+        // Fungsi untuk lazy load gambar
+    function lazyLoadParallax() {
+    const parallaxElement = document.querySelector('.parallax');
+    const images = [
+        '/frontend/img/hero-page/background.jpg',
+        '/frontend/img/hero-page/foreground.png',
+        '/frontend/img/hero-page/hills.png',
+        '/frontend/img/hero-page/rocks1.png',
+        '/frontend/img/hero-page/rocks2.png'
+    ];
+
+    // Array untuk menyimpan status loading gambar
+    let loadedImages = 0;
+
+    // Fungsi untuk mengecek apakah semua gambar sudah diload
+    function checkAllImagesLoaded() {
+        loadedImages++;
+        if (loadedImages === images.length) {
+        parallaxElement.classList.add('loaded');
+        initParallaxAnimations();
+        }
+    }
+
+    // Load semua gambar
+    images.forEach((imgSrc, index) => {
+        const img = new Image();
+        
+        img.onload = () => {
+        // Setelah gambar load, terapkan ke elemen yang sesuai
+        if (index === 0) {
+            // Background image
+            parallaxElement.style.backgroundImage = `url(${imgSrc})`;
+        }
+        checkAllImagesLoaded();
+        };
+
+        img.onerror = () => {
+        console.error(`Failed to load image: ${imgSrc}`);
+        checkAllImagesLoaded(); // Tetap lanjutkan meski ada error
+        };
+
+        // Mulai loading gambar
+        img.src = imgSrc;
+    });
+    }
+
+    // Fungsi untuk menginisialisasi animasi parallax
+    function initParallaxAnimations() {
+    // Set durasi animasi untuk setiap layer
+    const root = document.documentElement;
+    root.style.setProperty('--foregroundDuration', '20s');
+    root.style.setProperty('--hillsDuration', '30s');
+    root.style.setProperty('--rocks1Duration', '40s');
+    root.style.setProperty('--rocks2Duration', '50s');
+
+    // Aktifkan animasi pada layer
+    document.querySelectorAll('.parallax .layer').forEach(layer => {
+        layer.style.animation = layer.style.animation || '';
+    });
+    }
+
+    // Implementasi Intersection Observer untuk trigger lazy loading
+    function setupLazyLoading() {
+    const options = {
+        root: null,
+        rootMargin: '50px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            lazyLoadParallax();
+            observer.unobserve(entry.target);
+        }
+        });
+    }, options);
+
+    // Observe parallax element
+    const parallaxElement = document.querySelector('.parallax');
+    if (parallaxElement) {
+        observer.observe(parallaxElement);
+    }
+    }
+
+    // Inisialisasi saat DOM loaded
+    document.addEventListener('DOMContentLoaded', () => {
+    setupLazyLoading();
+    });
+
+    // Optional: Tambahkan handler untuk cleanup
+    window.addEventListener('beforeunload', () => {
+    // Cleanup animations jika diperlukan
+    document.querySelectorAll('.parallax .layer').forEach(layer => {
+        layer.style.animation = 'none';
+    });
+    });
+
+     </script>
+     <script src="/frontend/js/templateconfig/config.js"></script>
+     <script type="module" src="/frontend/js/client-auth/firebase-config.js"></script>
+     <script type="module" src="/frontend/js/client-auth/client-auth.js"></script>
+     <script src="/frontend/js/darkmode.js"></script>
+     <script src="/frontend/js/script.js"></script>
+    </body>
+</html>
